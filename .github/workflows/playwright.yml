@@ -25,6 +25,11 @@ jobs:
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
 
+      - name: Start OmniQA Server
+        run: |
+          npm start &
+          npx wait-on http://127.0.0.1:3000
+
       - name: Run Playwright Tests
         run: npx playwright test --project=chromium --project=firefox
 
