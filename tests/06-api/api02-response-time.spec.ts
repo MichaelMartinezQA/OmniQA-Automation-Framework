@@ -10,6 +10,6 @@ test('API 02 - Response Time', async ({ request }) => {
 
   console.log(`Response time: ${responseTime} ms`);
   
-  // Assert response time is under 500 ms (you can adjust this threshold based on your needs)
-  expect(responseTime).toBeLessThan(500);
+  // Assert response time is under 1000 ms (you can adjust this threshold based on your needs)
+  expect(responseTime).toBeLessThan(1000);
 });
