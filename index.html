@@ -81,6 +81,26 @@
 <p id="priceDisplay">$1000</p>
 <p id="inventoryStatus">Available</p>
 
+<h3>Reservation Type</h3>
+
+<label for="reservationType">Refund Option:</label>
+<select id="reservationType">
+  <option value="refundable">Refundable</option>
+  <option value="non-refundable">Non-Refundable</option>
+</select>
+
+<br><br>
+
+<label for="unitType">Unit Type:</label>
+<select id="unitType">
+  <option value="room">Room</option>
+  <option value="stateroom">Stateroom</option>
+</select>
+
+<br><br>
+
+<p id="confirmationNumber"></p>
+
 <div id="results">
   <h3>Search Results</h3>
   <ul>
@@ -102,6 +122,10 @@ function isLeapYear(year) {
   );
 }
 
+function generateConfirmationNumber() {
+  return 'OMNI-' + Math.floor(100000 + Math.random() * 900000);
+}
+
 document.getElementById('searchButton').addEventListener('click', function () {
 
   const searchValue = document.getElementById('search').value;
@@ -116,6 +140,7 @@ document.getElementById('searchButton').addEventListener('click', function () {
   const promoResult = document.getElementById('promoResult');
   const paymentResult = document.getElementById('paymentResult');
   const bookingResult = document.getElementById('bookingResult');
+  const confirmationNumber = document.getElementById('confirmationNumber');
 
   paymentSuccessful = false;
   bookingCompleted = false;
@@ -124,6 +149,7 @@ document.getElementById('searchButton').addEventListener('click', function () {
   promoResult.innerText = '';
   paymentResult.innerText = '';
   bookingResult.innerText = '';
+  confirmationNumber.innerText = '';
 
   if (emailValue === '') {
     searchResult.innerText = 'Email is required';
@@ -141,24 +167,24 @@ document.getElementById('searchButton').addEventListener('click', function () {
   const day = selectedDate.getDate() + 1;
 
   if (
-  month === 2 &&
-  day === 29 &&
-  !isLeapYear(year)
-) {
-  searchResult.innerText =
-    'Invalid leap year date';
-  return;
-}
+    month === 2 &&
+    day === 29 &&
+    !isLeapYear(year)
+  ) {
+    searchResult.innerText =
+      'Invalid leap year date';
+    return;
+  }
 
-const today = new Date();
+  const today = new Date();
 
-today.setHours(0, 0, 0, 0);
+  today.setHours(0, 0, 0, 0);
 
-if (selectedDate < today) {
-  searchResult.innerText =
-    'Travel Date cannot be in the past';
-  return;
-}
+  if (selectedDate < today) {
+    searchResult.innerText =
+      'Travel Date cannot be in the past';
+    return;
+  }
 
   if (promoCodeValue === '') {
     promoResult.innerText = 'Promo code is empty';
@@ -234,6 +260,9 @@ document.getElementById('bookNowButton').addEventListener('click', function () {
   const bookingResult =
     document.getElementById('bookingResult');
 
+  const confirmationNumber =
+    document.getElementById('confirmationNumber');
+
   if (paymentSuccessful === false) {
     bookingResult.innerText =
       'Booking blocked: payment must be successful first';
@@ -248,6 +277,9 @@ document.getElementById('bookNowButton').addEventListener('click', function () {
 
   bookingResult.innerText =
     'Booking confirmed';
+
+  confirmationNumber.innerText =
+    generateConfirmationNumber();
 
   bookingCompleted = true;
 
