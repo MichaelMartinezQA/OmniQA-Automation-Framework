@@ -5,6 +5,9 @@ test('Business Risk 04 - Verify inventory is available before booking', async ({
   await page.goto('http://localhost:3000');
 
   await expect(page.locator('#inventoryStatus'))
-    .toHaveText('Available');
+    .toContainText('Rooms Available:');
+
+  await expect(page.locator('#inventoryStatus'))
+    .toContainText('Staterooms Available:');
 
 });

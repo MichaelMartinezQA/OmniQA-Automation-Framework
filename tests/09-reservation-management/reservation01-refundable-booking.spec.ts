@@ -5,7 +5,7 @@ test('Reservation 01 - Refundable booking', async ({ page }) => {
 
   await page.locator('#email').fill('michael@test.com');
 
-  await page.locator('#travelDate').fill('2027-07-14');
+  await page.locator('#travelDate').fill('2027-08-15');
 
   await page.locator('#reservationType').selectOption('refundable');
 

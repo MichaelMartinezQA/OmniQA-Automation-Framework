@@ -68,19 +68,6 @@
 
 <br><br>
 
-<button id="searchButton">Search</button>
-
-<br><br>
-
-<button id="bookNowButton">Book Now</button>
-
-<p id="searchResult"></p>
-<p id="promoResult"></p>
-<p id="paymentResult"></p>
-<p id="bookingResult"></p>
-<p id="priceDisplay">$1000</p>
-<p id="inventoryStatus">Available</p>
-
 <h3>Reservation Type</h3>
 
 <label for="reservationType">Refund Option:</label>
@@ -99,7 +86,41 @@
 
 <br><br>
 
+<label for="nonRefundableAcknowledgement">
+  <input type="checkbox" id="nonRefundableAcknowledgement" />
+  I understand this non-refundable reservation may not be eligible for a refund.
+</label>
+
+<br><br>
+
+<button id="searchButton">Search</button>
+
+<br><br>
+
+<button id="bookNowButton">Book Now</button>
+
+<br><br>
+
+<button id="modifyReservationButton">Modify Reservation</button>
+
+<br><br>
+
+<button id="saveReservationChangesButton">Save Reservation Changes</button>
+
+<br><br>
+
+<button id="cancelReservationButton">Cancel Reservation</button>
+
+<p id="searchResult"></p>
+<p id="promoResult"></p>
+<p id="paymentResult"></p>
+<p id="bookingResult"></p>
+<p id="reservationChangeResult"></p>
+<p id="cancellationResult"></p>
 <p id="confirmationNumber"></p>
+<p id="priceDisplay">$1000</p>
+<p id="inventoryStatus">Rooms Available: 5 | Staterooms Available: 3</p>
+<p id="reservationStatus"></p>
 
 <div id="results">
   <h3>Search Results</h3>
@@ -114,6 +135,15 @@
 
 let paymentSuccessful = false;
 let bookingCompleted = false;
+let modificationMode = false;
+let cancellationCompleted = false;
+let originalTravelDate = '';
+let originalReservationType = '';
+let originalUnitType = '';
+let currentConfirmationNumber = '';
+
+let roomInventory = 5;
+let stateroomInventory = 3;
 
 function isLeapYear(year) {
   return (
@@ -126,6 +156,77 @@ function generateConfirmationNumber() {
   return 'OMNI-' + Math.floor(100000 + Math.random() * 900000);
 }
 
+function daysUntilTravel(travelDateValue) {
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  const travelDate = new Date(travelDateValue);
+  travelDate.setHours(0, 0, 0, 0);
+
+  const difference = travelDate - today;
+
+  return Math.ceil(difference / (1000 * 60 * 60 * 24));
+}
+
+function isSoldOutWeek(travelDateValue) {
+  const travelDate = new Date(travelDateValue);
+  travelDate.setHours(0, 0, 0, 0);
+
+  const soldOutStart = new Date('2027-07-13');
+  soldOutStart.setHours(0, 0, 0, 0);
+
+  const soldOutEnd = new Date('2027-07-20');
+  soldOutEnd.setHours(0, 0, 0, 0);
+
+  return travelDate >= soldOutStart && travelDate <= soldOutEnd;
+}
+
+function updateInventoryDisplay() {
+  const inventoryStatus = document.getElementById('inventoryStatus');
+
+  inventoryStatus.innerText =
+    'Rooms Available: ' + roomInventory +
+    ' | Staterooms Available: ' + stateroomInventory;
+}
+
+function selectedUnitHasInventory(unitTypeValue) {
+  if (unitTypeValue === 'room') {
+    return roomInventory > 0;
+  }
+
+  if (unitTypeValue === 'stateroom') {
+    return stateroomInventory > 0;
+  }
+
+  return false;
+}
+
+function reduceInventory(unitTypeValue) {
+  if (unitTypeValue === 'room') {
+    roomInventory = roomInventory - 1;
+  }
+
+  if (unitTypeValue === 'stateroom') {
+    stateroomInventory = stateroomInventory - 1;
+  }
+
+  updateInventoryDisplay();
+}
+
+function restoreInventory(unitTypeValue) {
+  if (unitTypeValue === 'room') {
+    roomInventory = roomInventory + 1;
+  }
+
+  if (unitTypeValue === 'stateroom') {
+    stateroomInventory = stateroomInventory + 1;
+  }
+
+  updateInventoryDisplay();
+}
+
+updateInventoryDisplay();
+
 document.getElementById('searchButton').addEventListener('click', function () {
 
   const searchValue = document.getElementById('search').value;
@@ -135,21 +236,37 @@ document.getElementById('searchButton').addEventListener('click', function () {
   const creditCardValue = document.getElementById('creditCard').value;
   const expirationDateValue = document.getElementById('expirationDate').value;
   const cvvValue = document.getElementById('cvv').value;
+  const unitTypeValue = document.getElementById('unitType').value;
 
   const searchResult = document.getElementById('searchResult');
   const promoResult = document.getElementById('promoResult');
   const paymentResult = document.getElementById('paymentResult');
   const bookingResult = document.getElementById('bookingResult');
+  const reservationChangeResult = document.getElementById('reservationChangeResult');
+  const cancellationResult = document.getElementById('cancellationResult');
   const confirmationNumber = document.getElementById('confirmationNumber');
+  const reservationStatus = document.getElementById('reservationStatus');
+  const inventoryStatus = document.getElementById('inventoryStatus');
 
   paymentSuccessful = false;
   bookingCompleted = false;
+  modificationMode = false;
+  cancellationCompleted = false;
+  originalTravelDate = '';
+  originalReservationType = '';
+  originalUnitType = '';
+  currentConfirmationNumber = '';
 
   searchResult.innerText = '';
   promoResult.innerText = '';
   paymentResult.innerText = '';
   bookingResult.innerText = '';
+  reservationChangeResult.innerText = '';
+  cancellationResult.innerText = '';
   confirmationNumber.innerText = '';
+  reservationStatus.innerText = '';
+
+  updateInventoryDisplay();
 
   if (emailValue === '') {
     searchResult.innerText = 'Email is required';
@@ -171,18 +288,35 @@ document.getElementById('searchButton').addEventListener('click', function () {
     day === 29 &&
     !isLeapYear(year)
   ) {
-    searchResult.innerText =
-      'Invalid leap year date';
+    searchResult.innerText = 'Invalid leap year date';
     return;
   }
 
   const today = new Date();
-
   today.setHours(0, 0, 0, 0);
 
   if (selectedDate < today) {
+    searchResult.innerText = 'Travel Date cannot be in the past';
+    return;
+  }
+
+  if (isSoldOutWeek(travelDateValue)) {
+    inventoryStatus.innerText =
+      'Sold Out: July 13-20, 2027';
+
     searchResult.innerText =
-      'Travel Date cannot be in the past';
+      'Selected travel dates are sold out';
+
+    return;
+  }
+
+  if (selectedUnitHasInventory(unitTypeValue) === false) {
+    inventoryStatus.innerText =
+      unitTypeValue + ' inventory sold out';
+
+    searchResult.innerText =
+      'Selected unit type is sold out';
+
     return;
   }
 
@@ -246,26 +380,52 @@ document.getElementById('searchButton').addEventListener('click', function () {
     return;
   }
 
-  searchResult.innerText =
-    'Searching for: ' + searchValue;
-
-  paymentResult.innerText =
-    'Payment successful';
+  searchResult.innerText = 'Searching for: ' + searchValue;
+  paymentResult.innerText = 'Payment successful';
 
   paymentSuccessful = true;
 });
 
 document.getElementById('bookNowButton').addEventListener('click', function () {
 
-  const bookingResult =
-    document.getElementById('bookingResult');
+  const bookingResult = document.getElementById('bookingResult');
+  const confirmationNumber = document.getElementById('confirmationNumber');
+  const reservationStatus = document.getElementById('reservationStatus');
+  const inventoryStatus = document.getElementById('inventoryStatus');
 
-  const confirmationNumber =
-    document.getElementById('confirmationNumber');
+  const reservationTypeValue = document.getElementById('reservationType').value;
+  const unitTypeValue = document.getElementById('unitType').value;
+  const travelDateValue = document.getElementById('travelDate').value;
+  const acknowledgementChecked = document.getElementById('nonRefundableAcknowledgement').checked;
 
   if (paymentSuccessful === false) {
+    bookingResult.innerText = 'Booking blocked: payment must be successful first';
+    return;
+  }
+
+  if (isSoldOutWeek(travelDateValue)) {
+    inventoryStatus.innerText =
+      'Sold Out: July 13-20, 2027';
+
     bookingResult.innerText =
-      'Booking blocked: payment must be successful first';
+      'Booking blocked: selected travel dates are sold out';
+
+    return;
+  }
+
+  if (selectedUnitHasInventory(unitTypeValue) === false) {
+    inventoryStatus.innerText =
+      unitTypeValue + ' inventory sold out';
+
+    bookingResult.innerText =
+      'Booking blocked: selected unit type is sold out';
+
+    return;
+  }
+
+  if (reservationTypeValue === 'non-refundable' && acknowledgementChecked === false) {
+    bookingResult.innerText =
+      'Booking blocked: non-refundable acknowledgement is required';
     return;
   }
 
@@ -275,13 +435,181 @@ document.getElementById('bookNowButton').addEventListener('click', function () {
     return;
   }
 
-  bookingResult.innerText =
-    'Booking confirmed';
+  reduceInventory(unitTypeValue);
 
-  confirmationNumber.innerText =
-    generateConfirmationNumber();
+  bookingResult.innerText = 'Booking confirmed';
+
+  currentConfirmationNumber = generateConfirmationNumber();
+  confirmationNumber.innerText = currentConfirmationNumber;
+
+  originalTravelDate = travelDateValue;
+  originalReservationType = reservationTypeValue;
+  originalUnitType = unitTypeValue;
+
+  reservationStatus.innerText =
+    'Reservation active: ' + originalReservationType + ' ' + originalUnitType;
 
   bookingCompleted = true;
+
+});
+
+document.getElementById('modifyReservationButton').addEventListener('click', function () {
+
+  const reservationChangeResult = document.getElementById('reservationChangeResult');
+
+  if (bookingCompleted === false) {
+    reservationChangeResult.innerText =
+      'Modification blocked: booking must be completed first';
+    return;
+  }
+
+  if (cancellationCompleted === true) {
+    reservationChangeResult.innerText =
+      'Modification blocked: reservation has already been cancelled';
+    return;
+  }
+
+  modificationMode = true;
+
+  reservationChangeResult.innerText =
+    'Reservation modification mode enabled';
+
+});
+
+document.getElementById('saveReservationChangesButton').addEventListener('click', function () {
+
+  const reservationTypeValue =
+    document.getElementById('reservationType').value;
+
+  const newTravelDateValue =
+    document.getElementById('travelDate').value;
+
+  const reservationChangeResult =
+    document.getElementById('reservationChangeResult');
+
+  const reservationStatus =
+    document.getElementById('reservationStatus');
+
+  if (bookingCompleted === false) {
+    reservationChangeResult.innerText =
+      'Modification blocked: booking must be completed first';
+    return;
+  }
+
+  if (cancellationCompleted === true) {
+    reservationChangeResult.innerText =
+      'Modification blocked: reservation has already been cancelled';
+    return;
+  }
+
+  if (modificationMode === false) {
+    reservationChangeResult.innerText =
+      'Modification blocked: modification mode must be enabled first';
+    return;
+  }
+
+  if (newTravelDateValue === '') {
+    reservationChangeResult.innerText =
+      'Modification blocked: new travel date is required';
+    return;
+  }
+
+  if (isSoldOutWeek(newTravelDateValue)) {
+    reservationChangeResult.innerText =
+      'Modification blocked: selected travel dates are sold out';
+    return;
+  }
+
+  if (reservationTypeValue === 'non-refundable') {
+    reservationChangeResult.innerText =
+      'Modification blocked: non-refundable reservations cannot be changed';
+    return;
+  }
+
+  if (reservationTypeValue === 'refundable') {
+    const daysRemaining = daysUntilTravel(originalTravelDate);
+
+    if (daysRemaining <= 2) {
+      reservationChangeResult.innerText =
+        'Modification blocked: refundable reservations cannot be changed within 48 hours';
+      return;
+    }
+
+    originalTravelDate = newTravelDateValue;
+
+    reservationChangeResult.innerText =
+      'Reservation updated successfully';
+
+    reservationStatus.innerText =
+      'Reservation active: refundable, travel date updated to ' + originalTravelDate;
+
+    modificationMode = false;
+  }
+
+});
+
+document.getElementById('cancelReservationButton').addEventListener('click', function () {
+
+  const cancellationResult = document.getElementById('cancellationResult');
+  const reservationStatus = document.getElementById('reservationStatus');
+  const reservationTypeValue = document.getElementById('reservationType').value;
+
+  if (bookingCompleted === false) {
+    cancellationResult.innerText =
+      'Cancellation blocked: booking must be completed first';
+    return;
+  }
+
+  if (cancellationCompleted === true) {
+    cancellationResult.innerText =
+      'Cancellation blocked: reservation has already been cancelled';
+    return;
+  }
+
+  if (reservationTypeValue === 'non-refundable') {
+    cancellationResult.innerText =
+      'Warning: non-refundable reservations are not eligible for refunds';
+
+    reservationStatus.innerText =
+      'Reservation active: non-refundable cancellation warning displayed';
+
+    return;
+  }
+
+  if (reservationTypeValue === 'refundable') {
+    const daysRemaining = daysUntilTravel(originalTravelDate);
+
+    if (daysRemaining >= 7) {
+      restoreInventory(originalUnitType);
+
+      cancellationResult.innerText =
+        'Cancellation accepted: inventory will be released within 7 days';
+
+      reservationStatus.innerText =
+        'Reservation cancelled: refundable';
+
+      cancellationCompleted = true;
+      bookingCompleted = false;
+
+      return;
+    }
+
+    if (daysRemaining >= 3) {
+      cancellationResult.innerText =
+        'Cancellation accepted: reservation placed on 72-hour hold';
+
+      reservationStatus.innerText =
+        'Reservation cancellation pending: 72-hour hold';
+
+      return;
+    }
+
+    cancellationResult.innerText =
+      'Cancellation blocked: refundable reservations cannot be cancelled within 72 hours';
+
+    reservationStatus.innerText =
+      'Reservation active: cancellation blocked within 72 hours';
+  }
 
 });
 
