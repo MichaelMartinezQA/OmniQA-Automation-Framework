@@ -2,9 +2,9 @@
   "name": "playwright-learning",
   "version": "1.0.0",
   "description": "OmniQA Automation Framework",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "start": "npx http-server . -p 3000",
+    "start": "node server.js",
     "test": "npx playwright test"
   },
   "keywords": [],
