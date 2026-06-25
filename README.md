@@ -1,6 +1,17 @@
 # OmniQA Automation Framework
 
-## Latest Official Regression Results
+## QA Leadership + Modern Test Automation Portfolio
+
+**Michael Martinez**
+Quality Assurance Director | QA Leader | Automation Engineer
+
+15+ years of Quality Assurance experience across Hospitality, Travel, Telecommunications, Customer Experience, Business Risk Analysis, and Software Quality Assurance.
+
+This repository demonstrates both QA leadership and hands-on technical execution through the design and development of a production-style automation framework built using Playwright, TypeScript, Node.js, SQLite, Express.js, GitHub Actions, and CI/CD automation.
+
+---
+
+# Latest Official Regression Results
 
 ✅ 216 Passed
 
@@ -12,17 +23,29 @@
 
 ✅ Execution Time: 1.4 Minutes
 
-![Official Regression Results](docs/screenshots/official-regression-136-passed.png)
+![Official Regression Results](docs/screenshots/official-regression-216-passed.png)
 
 ---
 
-# Overview
+# Executive Summary
 
-OmniQA is a production-style Quality Assurance Automation Framework built with Playwright, TypeScript, Node.js, SQLite, GitHub Actions, and a custom travel reservation application.
+OmniQA is a production-style Quality Assurance Automation Framework designed to simulate real-world travel and hospitality reservation systems.
 
-The framework was designed to simulate real-world hospitality and travel reservation systems while demonstrating automation engineering, quality leadership, risk analysis, release management, inventory management, defect triage, and business-critical validation.
+The framework demonstrates:
 
-This repository serves as both a technical portfolio and a demonstration of practical QA leadership principles used in enterprise software environments.
+* Test Automation
+* Quality Engineering
+* Risk Assessment
+* Release Management
+* Defect Triage
+* Inventory Management
+* API Validation
+* Business Critical Testing
+* Cross-Browser Automation
+* CI/CD Integration
+* Test Data Management
+
+The project was intentionally designed to showcase how QA leadership principles translate into scalable automation solutions.
 
 ---
 
@@ -42,34 +65,28 @@ This repository serves as both a technical portfolio and a demonstration of prac
 
 # Current Project Metrics
 
-## Automated Coverage
+## Automated Testing Coverage
 
 ```text
-108 Automated Tests
-216 Cross-Browser Executions
+108 Automated Test Scenarios
 
 108 Chromium Passed
 108 Firefox Passed
 
-216 Passed
+216 Cross-Browser Executions
 0 Failed
 ```
 
-## Production Inventory Database
+## Production Database Coverage
 
 ```text
 1300 Hotel Rooms
 177 Cruise Sailings
-177000 Cruise Staterooms
+177,000 Cruise Staterooms
+
+Reservations Table
+Audit Log Table
 ```
-
-## Database Components
-
-* Hotel Room Inventory
-* Cruise Sailing Inventory
-* Cruise Stateroom Inventory
-* Reservations Table
-* Audit Log Table
 
 ---
 
@@ -79,7 +96,7 @@ This repository serves as both a technical portfolio and a demonstration of prac
 
 5 Automated Tests
 
-Validates:
+Coverage:
 
 * Homepage Availability
 * Search Functionality
@@ -93,13 +110,13 @@ Validates:
 
 5 Automated Tests
 
-Validates:
+Coverage:
 
 * Existing Functionality
-* Booking Flows
 * Search Results
-* Navigation Elements
+* Booking Flows
 * Form Submission
+* Navigation Validation
 
 ---
 
@@ -107,14 +124,14 @@ Validates:
 
 6 Automated Tests
 
-Validates:
+Coverage:
 
-* Invalid Search Inputs
+* Invalid Inputs
+* Missing Data
 * Invalid Email Formats
 * Missing Travel Dates
-* Missing Credit Cards
-* Missing Required Fields
-* Invalid User Actions
+* Missing Payment Data
+* Defensive Validation
 
 ---
 
@@ -122,13 +139,13 @@ Validates:
 
 6 Automated Tests
 
-Validates:
+Coverage:
 
 * Successful Payments
 * Declined Cards
 * Expired Cards
 * Invalid CVV
-* Payment Timeout Handling
+* Payment Timeouts
 * Card Length Validation
 
 ---
@@ -137,7 +154,7 @@ Validates:
 
 5 Automated Tests
 
-Validates:
+Coverage:
 
 * Valid Promo Codes
 * Expired Promo Codes
@@ -151,13 +168,13 @@ Validates:
 
 6 Automated Tests
 
-Validates:
+Coverage:
 
-* Status Codes
-* Response Times
-* Response Schemas
+* Status Code Validation
+* Response Time Validation
+* Response Schema Validation
 * Invalid Requests
-* Authentication
+* Authentication Validation
 * Sold-Out Inventory APIs
 
 ---
@@ -166,14 +183,12 @@ Validates:
 
 5 Automated Tests
 
-Validates critical defects capable of blocking production deployment.
-
-Coverage includes:
+Coverage:
 
 * Booking Failures
+* Search Failures
 * Payment Failures
 * Date Validation
-* Search Failures
 * Critical User Journeys
 
 ---
@@ -182,12 +197,12 @@ Coverage includes:
 
 5 Automated Tests
 
-Validates:
+Coverage:
 
 * Duplicate Booking Prevention
 * Past Date Prevention
 * Inventory Validation
-* Pricing Risks
+* Pricing Risk Validation
 * Booking Confirmation Validation
 
 ---
@@ -196,17 +211,18 @@ Validates:
 
 15 Automated Tests
 
-Coverage includes:
+Coverage:
 
 * Refundable Reservations
 * Non-Refundable Reservations
-* Reservation Changes
+* Reservation Modifications
+* Modification Restrictions
 * Cancellation Rules
-* Hold Periods
+* Hold Management
 * Inventory Reduction
 * Inventory Restoration
 * Seasonal Pricing
-* Sold-Out Inventory Validation
+* Sold-Out Validation
 
 ---
 
@@ -214,15 +230,15 @@ Coverage includes:
 
 20 Automated Tests
 
-Coverage includes:
+Coverage:
 
 * Inventory Retrieval
 * Inventory Reduction
 * Inventory Restoration
 * Sold-Out Validation
 * Double Cancellation Prevention
-* Invalid Request Handling
 * Request Validation
+* Invalid Requests
 * Stateroom Inventory Management
 * Inventory Boundary Protection
 * Multi-Booking Consistency
@@ -233,12 +249,12 @@ Coverage includes:
 
 10 Automated Tests
 
-Coverage includes:
+Coverage:
 
 * Critical Defect Validation
 * Payment Failure Risk
 * API Outage Risk
-* Revenue Risk Assessment
+* Revenue Impact Analysis
 * Smoke Suite Requirements
 * Production Readiness Validation
 * Final Release Approval Logic
@@ -249,11 +265,11 @@ Coverage includes:
 
 10 Automated Tests
 
-Coverage includes:
+Coverage:
 
 * Critical Production Defects
 * High Severity Defects
-* Workaround Validation
+* Workaround Analysis
 * Security Risks
 * Compliance Risks
 * VIP Customer Impact
@@ -265,7 +281,7 @@ Coverage includes:
 
 10 Automated Tests
 
-Coverage includes:
+Coverage:
 
 * Test Data Reset
 * Test Data Seeding
@@ -278,17 +294,48 @@ Coverage includes:
 
 ---
 
+# Production Database Integration
+
+OmniQA includes a SQLite-backed production-style inventory system.
+
+## Database Objects
+
+### Hotel Inventory
+
+```text
+1300 Hotel Rooms
+```
+
+### Cruise Inventory
+
+```text
+177 Cruise Sailings
+177,000 Cruise Staterooms
+```
+
+### Reservation Tracking
+
+Coverage Includes:
+
+* Reservations
+* Inventory Allocation
+* Inventory Restoration
+* Audit Logging
+* Availability Validation
+
+---
+
 # Inventory Management System
 
-OmniQA includes inventory tracking for multiple travel products.
+OmniQA validates inventory behavior for multiple travel products.
 
-## Room Inventory
+### Room Inventory
 
 ```text
 Maximum Inventory: 5
 ```
 
-## Stateroom Inventory
+### Stateroom Inventory
 
 ```text
 Maximum Inventory: 3
@@ -298,21 +345,21 @@ Coverage Includes:
 
 * Inventory Reduction
 * Inventory Restoration
-* Sold-Out Validation
+* Sold-Out Detection
 * Reservation Blocking
-* Inventory Boundary Protection
+* Inventory Boundary Validation
 
 ---
 
-# Production Database APIs
+# Production APIs
 
-## Inventory Summary
+## Inventory Summary API
 
 Returns:
 
-* Hotel Rooms
-* Cruise Sailings
-* Cruise Staterooms
+* Hotel Room Counts
+* Cruise Sailing Counts
+* Cruise Stateroom Counts
 * Reservation Counts
 * Audit Log Counts
 
@@ -329,14 +376,14 @@ Returns:
 Returns:
 
 * Sailing Schedules
-* Cruise Destinations
-* Sailing Availability
+* Destinations
+* Availability Data
 
 ---
 
 # Official Sold-Out Inventory Period
 
-The framework contains a dedicated sold-out inventory period used for automated validation.
+Dedicated business-risk validation period:
 
 ```text
 July 13, 2027
@@ -346,10 +393,11 @@ July 20, 2027
 
 Coverage Includes:
 
-* Sold-Out Inventory Testing
+* Sold-Out Inventory Validation
 * Reservation Blocking
-* Business Risk Testing
-* Inventory Management Validation
+* Inventory Management
+* Business Risk Analysis
+* Reservation Lifecycle Testing
 
 ---
 
@@ -375,34 +423,37 @@ Results:
 
 # Continuous Integration
 
-GitHub Actions automatically executes the OmniQA regression suite and validates framework stability on every commit.
+GitHub Actions automatically validates framework stability.
 
 Coverage Includes:
 
 * Automated Execution
 * Regression Validation
 * Cross-Browser Testing
+* CI/CD Automation
 * Continuous Quality Monitoring
 
 ---
 
-# Professional Focus Areas Demonstrated
+# Professional Skills Demonstrated
 
-This framework demonstrates practical experience in:
-
-* Software Quality Assurance
+* Quality Assurance Leadership
 * Test Automation
-* Risk Analysis
-* Release Management
-* Inventory Management
-* Defect Triage
-* Business Critical Validation
+* Playwright Automation
+* TypeScript
 * API Testing
-* Cross-Browser Testing
-* CI/CD Automation
+* CI/CD
+* GitHub Actions
+* Release Management
+* Risk Assessment
+* Defect Triage
+* Inventory Management
 * Test Data Management
+* Business Risk Analysis
 * Hospitality Technology
 * Travel Technology
+* Cross-Browser Testing
+* Quality Engineering
 
 ---
 
@@ -410,7 +461,7 @@ This framework demonstrates practical experience in:
 
 ## Michael Martinez
 
-Quality Assurance Director with 15+ years of experience across:
+Quality Assurance Director with 15+ years of experience leading quality initiatives across:
 
 * Hospitality
 * Travel
@@ -419,7 +470,14 @@ Quality Assurance Director with 15+ years of experience across:
 * Software Quality Assurance
 * Business Risk Analysis
 
-Professional background includes leadership roles supporting quality strategy, operational excellence, risk reduction, automation initiatives, and customer experience optimization.
+Career highlights include:
+
+* Building QA organizations from the ground up
+* Driving quality strategy and operational excellence
+* Improving sales performance through quality programs
+* Leading cross-functional quality initiatives
+* Implementing automation frameworks and testing strategies
+* Managing business-critical risk and release decisions
 
 GitHub:
 
