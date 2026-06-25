@@ -1,5 +1,7 @@
 # OmniQA Automation Framework
 
+![Playwright Tests](https://github.com/MichaelMartinezQA/OmniQA-Automation-Framework/actions/workflows/playwright.yml/badge.svg?branch=main)
+
 ## QA Leadership + Modern Test Automation Portfolio
 
 **Michael Martinez**
