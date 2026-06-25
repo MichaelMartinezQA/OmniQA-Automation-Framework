@@ -1,0 +1,313 @@
+OMNIQA PRODUCTION INVENTORY MODEL
+
+PURPOSE
+
+OmniQA is being upgraded from a demo automation site into a production-style hospitality and cruise reservation platform.
+
+The system must support:
+
+Hotel Inventory
+Cruise Inventory
+Real-Time Availability
+Reservation Management
+Cancellation Processing
+Sold-Out Validation
+Transactional Inventory
+Parallel Worker Support
+Future AI Release Readiness
+
+HOTEL DESTINATIONS
+
+1. Miami
+2. Cancun
+3. Punta Cana
+
+HOTEL INVENTORY BY DESTINATION
+
+Miami
+400 Total Rooms
+
+Cancun
+500 Total Rooms
+
+Punta Cana
+400 Total Rooms
+
+TOTAL HOTEL INVENTORY
+
+1300 Rooms
+
+HOTEL ROOM VIEW DISTRIBUTION
+
+Garden / Resort View
+75% of inventory
+
+Partial Ocean View
+20% of inventory
+
+Ocean Front
+5% of inventory
+
+MIAMI ROOM DISTRIBUTION
+
+400 Total Rooms
+
+300 Garden / Resort View
+80 Partial Ocean View
+20 Ocean Front
+
+CANCUN ROOM DISTRIBUTION
+
+500 Total Rooms
+
+375 Garden / Resort View
+100 Partial Ocean View
+25 Ocean Front
+
+PUNTA CANA ROOM DISTRIBUTION
+
+400 Total Rooms
+
+300 Garden / Resort View
+80 Partial Ocean View
+20 Ocean Front
+
+HOTEL ROOM NUMBERING
+
+Room numbers should use realistic floor-based numbering.
+
+Example:
+
+Floor 1
+101-199
+
+Floor 2
+201-299
+
+Floor 3
+301-399
+
+Additional floors are added as needed based on property size.
+
+CRUISE FLEET MODEL
+
+OmniQA Explorer
+Destination: Bahamas
+
+OmniQA Horizon
+Destination: Western Caribbean
+
+OmniQA Voyager
+Destination: Eastern Caribbean
+
+Each ship maintains its own:
+
+Cruise Calendar
+Stateroom Inventory
+Reservations
+Pricing
+Availability
+
+Inventory and reservations are never shared between ships.
+
+CRUISE LENGTHS
+
+3-Day Cruise
+4-Day Cruise
+7-Day Cruise
+
+CRUISE SCHEDULE RULES
+
+All 3 ships follow the same schedule model.
+
+Short Cruise Season:
+September 1 through November 15 every year
+
+During short cruise season:
+
+3-Day Cruise
+4-Day Cruise
+7-Day Cruise
+
+Pattern repeats throughout the season.
+
+Standard Cruise Season:
+November 16 through August 31 every year
+
+During standard cruise season:
+
+7-Day Cruises only
+
+CALENDAR REQUIREMENTS
+
+Support 365-day years
+Support 366-day leap years
+Sailing dates must be generated dynamically by year
+Cruise inventory must attach to a specific sailing date
+Each ship must have its own schedule
+Each sailing must have its own stateroom inventory
+
+CRUISE INVENTORY PER SHIP
+
+1000 Total Staterooms Per Ship
+
+STATEROOM NUMBERING
+
+Industry Standard Deck-Based Numbering
+
+10 Passenger Decks
+
+Deck 1
+1001-1100
+
+Deck 2
+2001-2100
+
+Deck 3
+3001-3100
+
+Deck 4
+4001-4100
+
+Deck 5
+5001-5100
+
+Deck 6
+6001-6100
+
+Deck 7
+7001-7100
+
+Deck 8
+8001-8100
+
+Deck 9
+9001-9100
+
+Deck 10
+10001-10100
+
+Total Staterooms Per Ship:
+
+1000
+
+CABIN DISTRIBUTION
+
+Interior Cabins
+80% of ship inventory
+
+Premium Cabins
+20% of ship inventory
+
+Decks 1-5
+Standard Interior
+500 Cabins
+
+Decks 6-7
+Superior Interior
+200 Cabins
++250 Square Feet
+
+Deck 8
+Deluxe Interior
+100 Cabins
++500 Square Feet
+Separate Bedroom
+
+Deck 9
+Ocean View
+120 Cabins
+
+Deck 10
+Balcony
+60 Cabins
+
+Deck 10 Premium Area
+Suites
+20 Cabins
+
+TOTAL CABIN DISTRIBUTION
+
+500 Standard Interior
+200 Superior Interior
+100 Deluxe Interior
+120 Ocean View
+60 Balcony
+20 Suite
+
+Total:
+
+1000 Staterooms
+
+RESERVATION FEATURES
+
+Inventory Availability
+Real-Time Booking
+Cancellation Processing
+Reservation Changes
+Sold-Out Validation
+Category-Based Availability
+Ship-Based Availability
+Date-Based Availability
+Destination-Based Availability
+
+FUTURE FEATURES
+
+Parallel Worker Support
+Transactional Inventory
+Concurrency Testing
+AI Risk Analysis
+Release Readiness
+Production Monitoring
+Database Validation
+Audit Trail Validation
+Pricing Validation
+Revenue Risk Validation
+
+FUTURE SCALING MODEL
+
+Current Phase:
+
+3 Resort Destinations
+3 Cruise Ships
+3 Cruise Destinations
+
+Future Phase:
+
+Add Urban Hotels:
+
+London
+Rome
+Venice
+
+Future Resort Expansion:
+
+Los Cabos
+Aruba
+Jamaica
+Dominican Republic
+
+Future Cruise Expansion:
+
+Additional ships
+Additional itineraries
+Additional sail dates
+Additional cabin categories
+
+ARCHITECTURE PRINCIPLE
+
+The database must become the source of truth.
+
+Inventory should no longer depend on simple JavaScript counters.
+
+The future goal is:
+
+Worker 1 books available inventory
+Worker 2 sees that inventory as unavailable
+Worker 2 books the next available inventory
+Worker 3 and Worker 4 do the same safely
+
+No duplicate bookings.
+No overselling.
+No stale inventory.
+No shared-memory race conditions.

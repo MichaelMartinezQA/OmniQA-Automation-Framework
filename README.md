@@ -2,251 +2,424 @@
 
 ## Latest Official Regression Results
 
-✅ 116 Passed
+✅ 216 Passed
 
 ✅ 0 Failed
 
-✅ Chromium: 58 Passed
+✅ Chromium: 108 Passed
 
-✅ Firefox: 58 Passed
+✅ Firefox: 108 Passed
 
-✅ Execution Time: 47.7 Seconds
+✅ Execution Time: 1.4 Minutes
 
-![Official Regression Results](docs/screenshots/official-regression-116-passed.png)
-
----
-
-## Overview
-
-OmniQA is a Playwright-based automation framework built on a custom travel reservation application designed specifically for quality assurance training, portfolio development, and real-world business risk testing.
-
-The application and test suites were intentionally designed to simulate production-style travel booking workflows, including:
-
-- Travel Reservations
-- Inventory Management
-- Payment Processing
-- Reservation Modifications
-- Cancellation Workflows
-- Promo Code Validation
-- Sold-Out Inventory Scenarios
-- Seasonal Pricing
-- Business Risk Validation
-- API Testing
-
-This project demonstrates QA leadership, risk analysis, automation strategy, test design, and Playwright automation development using TypeScript.
+![Official Regression Results](docs/screenshots/official-regression-136-passed.png)
 
 ---
 
-## Technology Stack
+# Overview
 
-- Playwright
-- TypeScript
-- Node.js
-- Git
-- GitHub
-- GitHub Actions (CI/CD)
+OmniQA is a production-style Quality Assurance Automation Framework built with Playwright, TypeScript, Node.js, SQLite, GitHub Actions, and a custom travel reservation application.
 
----
+The framework was designed to simulate real-world hospitality and travel reservation systems while demonstrating automation engineering, quality leadership, risk analysis, release management, inventory management, defect triage, and business-critical validation.
 
-## Project Evolution
-
-### Phase 1
-
-40 Automated Tests
-
-Core Smoke, Regression, Negative, Payments, Promo Code, Business Risk, Show Stopper, and API coverage.
-
-### Phase 2
-
-90 Cross-Browser Tests
-
-Expanded Chromium and Firefox execution.
-
-### Phase 3
-
-106 Automated Tests
-
-Added Reservation Management workflows.
-
-### Phase 4
-
-116 Automated Tests
-
-Added:
-
-- Inventory Management
-- Inventory Restoration
-- Sold-Out Inventory Validation
-- Stateroom Inventory Tracking
-- Seasonal Pricing Validation
-- Reservation Lifecycle Coverage
+This repository serves as both a technical portfolio and a demonstration of practical QA leadership principles used in enterprise software environments.
 
 ---
 
-## Test Suites
+# Technology Stack
 
-### 01 - Smoke Testing
-
-Core application availability and functionality validation.
-
-### 02 - Regression Testing
-
-Regression coverage for previously validated functionality.
-
-### 03 - Negative Testing
-
-Validation of invalid inputs, error handling, and defensive controls.
-
-### 04 - Payments Testing
-
-Coverage includes:
-
-- Valid Payments
-- Declined Cards
-- Expired Cards
-- Invalid CVV
-- Payment Timeouts
-- Card Length Validation
-
-### 05 - Promo Code Testing
-
-Coverage includes:
-
-- Valid Promo Codes
-- Expired Promo Codes
-- Previously Used Promo Codes
-- Invalid Promo Codes
-- Empty Promo Codes
-- Stacking Prevention
-
-### 06 - API Testing
-
-Coverage includes:
-
-- Status Code Validation
-- Response Time Validation
-- Response Schema Validation
-- Invalid Request Handling
-- Authentication Validation
-- Sold-Out Inventory API Validation
-
-### 07 - Show Stopper Testing
-
-Critical failures capable of preventing bookings or disrupting core business workflows.
-
-### 08 - Business Risk Testing
-
-Coverage includes:
-
-- Duplicate Booking Prevention
-- Past Date Prevention
-- Price Change Detection
-- Inventory Validation
-- Booking Confirmation Validation
-
-### 09 - Reservation Management
-
-Comprehensive reservation lifecycle coverage:
-
-- Refundable Reservations
-- Non-Refundable Reservations
-- Reservation Modifications
-- Modification Restrictions
-- Cancellation Rules
-- Cancellation Holds
-- Inventory Reduction
-- Inventory Restoration
-- Sold-Out Validation
-- Seasonal Pricing Validation
+* Playwright
+* TypeScript
+* Node.js
+* SQLite
+* Express.js
+* Git
+* GitHub
+* GitHub Actions
+* CI/CD Automation
 
 ---
 
-## Inventory Management
+# Current Project Metrics
 
-The OmniQA application includes inventory tracking for multiple travel products.
-
-### Room Inventory
-
-Starting Inventory:
+## Automated Coverage
 
 ```text
-5
+108 Automated Tests
+216 Cross-Browser Executions
+
+108 Chromium Passed
+108 Firefox Passed
+
+216 Passed
+0 Failed
 ```
 
-### Stateroom Inventory
-
-Starting Inventory:
+## Production Inventory Database
 
 ```text
-3
+1300 Hotel Rooms
+177 Cruise Sailings
+177000 Cruise Staterooms
+```
+
+## Database Components
+
+* Hotel Room Inventory
+* Cruise Sailing Inventory
+* Cruise Stateroom Inventory
+* Reservations Table
+* Audit Log Table
+
+---
+
+# Test Suite Organization
+
+## 01 - Smoke Testing
+
+5 Automated Tests
+
+Validates:
+
+* Homepage Availability
+* Search Functionality
+* Navigation
+* Booking Access
+* Core User Flows
+
+---
+
+## 02 - Regression Testing
+
+5 Automated Tests
+
+Validates:
+
+* Existing Functionality
+* Booking Flows
+* Search Results
+* Navigation Elements
+* Form Submission
+
+---
+
+## 03 - Negative Testing
+
+6 Automated Tests
+
+Validates:
+
+* Invalid Search Inputs
+* Invalid Email Formats
+* Missing Travel Dates
+* Missing Credit Cards
+* Missing Required Fields
+* Invalid User Actions
+
+---
+
+## 04 - Payments Testing
+
+6 Automated Tests
+
+Validates:
+
+* Successful Payments
+* Declined Cards
+* Expired Cards
+* Invalid CVV
+* Payment Timeout Handling
+* Card Length Validation
+
+---
+
+## 05 - Promo Code Testing
+
+5 Automated Tests
+
+Validates:
+
+* Valid Promo Codes
+* Expired Promo Codes
+* Reused Promo Codes
+* Invalid Promo Codes
+* Empty Promo Codes
+
+---
+
+## 06 - API Testing
+
+6 Automated Tests
+
+Validates:
+
+* Status Codes
+* Response Times
+* Response Schemas
+* Invalid Requests
+* Authentication
+* Sold-Out Inventory APIs
+
+---
+
+## 07 - Show Stopper Testing
+
+5 Automated Tests
+
+Validates critical defects capable of blocking production deployment.
+
+Coverage includes:
+
+* Booking Failures
+* Payment Failures
+* Date Validation
+* Search Failures
+* Critical User Journeys
+
+---
+
+## 08 - Business Risk Testing
+
+5 Automated Tests
+
+Validates:
+
+* Duplicate Booking Prevention
+* Past Date Prevention
+* Inventory Validation
+* Pricing Risks
+* Booking Confirmation Validation
+
+---
+
+## 09 - Reservation Management
+
+15 Automated Tests
+
+Coverage includes:
+
+* Refundable Reservations
+* Non-Refundable Reservations
+* Reservation Changes
+* Cancellation Rules
+* Hold Periods
+* Inventory Reduction
+* Inventory Restoration
+* Seasonal Pricing
+* Sold-Out Inventory Validation
+
+---
+
+## 10 - Backend API Testing
+
+20 Automated Tests
+
+Coverage includes:
+
+* Inventory Retrieval
+* Inventory Reduction
+* Inventory Restoration
+* Sold-Out Validation
+* Double Cancellation Prevention
+* Invalid Request Handling
+* Request Validation
+* Stateroom Inventory Management
+* Inventory Boundary Protection
+* Multi-Booking Consistency
+
+---
+
+## 11 - Release Management
+
+10 Automated Tests
+
+Coverage includes:
+
+* Critical Defect Validation
+* Payment Failure Risk
+* API Outage Risk
+* Revenue Risk Assessment
+* Smoke Suite Requirements
+* Production Readiness Validation
+* Final Release Approval Logic
+
+---
+
+## 12 - Defect Triage & Risk Assessment
+
+10 Automated Tests
+
+Coverage includes:
+
+* Critical Production Defects
+* High Severity Defects
+* Workaround Validation
+* Security Risks
+* Compliance Risks
+* VIP Customer Impact
+* Executive Risk Reviews
+
+---
+
+## 13 - Test Data Management
+
+10 Automated Tests
+
+Coverage includes:
+
+* Test Data Reset
+* Test Data Seeding
+* Cleanup Processes
+* Duplicate Prevention
+* Bulk Data Generation
+* Environment Isolation
+* Production Data Protection
+* Audit Trail Validation
+
+---
+
+# Inventory Management System
+
+OmniQA includes inventory tracking for multiple travel products.
+
+## Room Inventory
+
+```text
+Maximum Inventory: 5
+```
+
+## Stateroom Inventory
+
+```text
+Maximum Inventory: 3
 ```
 
 Coverage Includes:
 
-- Inventory Reduction
-- Inventory Restoration
-- Sold-Out Detection
-- Reservation Blocking
-- Inventory Validation
+* Inventory Reduction
+* Inventory Restoration
+* Sold-Out Validation
+* Reservation Blocking
+* Inventory Boundary Protection
 
 ---
 
-## Official Sold-Out Inventory Period
+# Production Database APIs
 
-The framework includes a dedicated sold-out inventory period for automated testing:
+## Inventory Summary
 
-### July 13, 2027 through July 20, 2027
+Returns:
 
-This date range is intentionally configured for:
+* Hotel Rooms
+* Cruise Sailings
+* Cruise Staterooms
+* Reservation Counts
+* Audit Log Counts
 
-- Sold-Out Inventory Validation
-- Reservation Blocking
-- Inventory Management Testing
-- Business Risk Testing
-- Reservation Management Testing
+## Hotel Inventory API
+
+Returns:
+
+* Available Rooms
+* Room Metadata
+* Destination Inventory
+
+## Cruise Inventory API
+
+Returns:
+
+* Sailing Schedules
+* Cruise Destinations
+* Sailing Availability
 
 ---
 
-## Cross-Browser Validation
+# Official Sold-Out Inventory Period
 
-The complete suite executes successfully in:
+The framework contains a dedicated sold-out inventory period used for automated validation.
+
+```text
+July 13, 2027
+through
+July 20, 2027
+```
+
+Coverage Includes:
+
+* Sold-Out Inventory Testing
+* Reservation Blocking
+* Business Risk Testing
+* Inventory Management Validation
+
+---
+
+# Cross-Browser Validation
+
+Validated Browsers:
 
 ✅ Chromium
 
 ✅ Firefox
 
-Current Results:
+Results:
 
 ```text
-58 Chromium Passed
-58 Firefox Passed
+108 Chromium Passed
+108 Firefox Passed
 
-116 Passed
+216 Passed
 0 Failed
 ```
 
 ---
 
-## Continuous Integration
+# Continuous Integration
 
-GitHub Actions automatically executes the OmniQA test suite and validates framework stability through continuous integration workflows.
+GitHub Actions automatically executes the OmniQA regression suite and validates framework stability on every commit.
+
+Coverage Includes:
+
+* Automated Execution
+* Regression Validation
+* Cross-Browser Testing
+* Continuous Quality Monitoring
 
 ---
 
-## About the Author
+# Professional Focus Areas Demonstrated
 
-### Michael Martinez
+This framework demonstrates practical experience in:
+
+* Software Quality Assurance
+* Test Automation
+* Risk Analysis
+* Release Management
+* Inventory Management
+* Defect Triage
+* Business Critical Validation
+* API Testing
+* Cross-Browser Testing
+* CI/CD Automation
+* Test Data Management
+* Hospitality Technology
+* Travel Technology
+
+---
+
+# About the Author
+
+## Michael Martinez
 
 Quality Assurance Director with 15+ years of experience across:
 
-- Hospitality
-- Travel
-- Telecommunications
-- Customer Experience
-- Software Quality Assurance
-- Business Risk Analysis
+* Hospitality
+* Travel
+* Telecommunications
+* Customer Experience
+* Software Quality Assurance
+* Business Risk Analysis
 
-This repository was created to demonstrate practical QA leadership, automation strategy, business-risk thinking, and Playwright automation development.
+Professional background includes leadership roles supporting quality strategy, operational excellence, risk reduction, automation initiatives, and customer experience optimization.
 
 GitHub:
 
@@ -254,4 +427,4 @@ MichaelMartinezQA
 
 ---
 
-In the rare event that the OmniQA test application is unavailable, please contact me through GitHub or LinkedIn and I will gladly assist with verification.
+If the OmniQA application or supporting environment is unavailable, please contact me through GitHub or LinkedIn and I will gladly assist with verification.
