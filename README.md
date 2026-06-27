@@ -218,7 +218,7 @@ GitHub:
 https://github.com/MichaelMartinezQA
 
 LinkedIn:
-(Add your LinkedIn profile here)
+https://www.linkedin.com/in/michael-martinez-31a2a21a4
 
 ---
 
