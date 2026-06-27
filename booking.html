@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OmniQA | Booking</title>
+</head>
+
+<body>
+
+<header>
+    <h1>OmniQA</h1>
+
+    <nav aria-label="Primary Navigation">
+        <a href="index.html">Home</a> |
+        <a href="booking.html" aria-current="page">Booking</a> |
+        <a href="payment.html">Payment</a> |
+        <a href="confirmation.html">Confirmation</a>
+    </nav>
+</header>
+
+<main>
+
+    <h2>Booking</h2>
+
+    <label for="reservationType">Reservation Type</label>
+
+    <select id="reservationType">
+        <option value="refundable">Refundable</option>
+        <option value="non-refundable">Non-Refundable</option>
+    </select>
+
+    <br><br>
+
+    <label for="unitType">Unit Type</label>
+
+    <select id="unitType">
+        <option value="room">Room</option>
+        <option value="stateroom">Stateroom</option>
+    </select>
+
+    <br><br>
+
+    <label for="travelDate">Travel Date</label>
+
+    <input
+        id="travelDate"
+        type="date">
+
+    <br><br>
+
+    <label for="nonRefundableAcknowledgement">
+        <input
+            id="nonRefundableAcknowledgement"
+            type="checkbox">
+        I understand this reservation may not be refundable.
+    </label>
+
+    <br><br>
+
+    <button id="bookNowButton">
+        Book Now
+    </button>
+
+    <p id="bookingResult"></p>
+
+    <p id="confirmationNumber"></p>
+
+</main>
+
+<footer>
+
+    <hr>
+
+    <p>OmniQA Automation Framework</p>
+
+</footer>
+
+</body>
+
+</html>
