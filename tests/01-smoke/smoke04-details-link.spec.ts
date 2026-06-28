@@ -1,17 +1,10 @@
 import { test, expect } from '@playwright/test';
+import { HomePage } from '../../pages/HomePage';
 
-test('Smoke Test 04 - Search result links are visible', async ({ page }) => {
-  await page.goto('http://localhost:3000/');
+test('Smoke 04 - Book button is visible', async ({ page }) => {
+  const homePage = new HomePage(page);
 
-  await expect(
-    page.getByText('Miami Bahamas Cruise - 4 Nights')
-  ).toBeVisible();
+  await homePage.open();
 
-  await expect(
-    page.getByText('Cancun Resort Getaway - 5 Nights')
-  ).toBeVisible();
-
-  await expect(
-    page.getByText('Barcelona Mediterranean Cruise - 7 Nights')
-  ).toBeVisible();
+  await expect(page.locator('#bookNowButton')).toBeVisible();
 });

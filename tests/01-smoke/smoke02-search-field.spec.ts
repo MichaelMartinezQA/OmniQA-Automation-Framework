@@ -1,10 +1,12 @@
 import { test, expect } from '@playwright/test';
+import { HomePage } from '../../pages/HomePage';
 
-test('Smoke Test 02 - Search field accepts input', async ({ page }) => {
-  await page.goto('http://localhost:3000');
+test('Smoke 02 - Search field accepts input', async ({ page }) => {
+  const homePage = new HomePage(page);
 
-  await page.fill('#search', 'Miami Cruise');
+  await homePage.open();
 
-  await expect(page.locator('#search'))
-    .toHaveValue('Miami Cruise');
+  await page.locator('#search').fill('Cancun');
+
+  await expect(page.locator('#search')).toHaveValue('Cancun');
 });
