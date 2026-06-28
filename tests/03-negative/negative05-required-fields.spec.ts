@@ -1,10 +1,12 @@
-import { test, expect } from '@playwright/test';
+import { test } from '@playwright/test';
+import { HomePage } from '../../pages/HomePage';
 
 test('Negative Test 05 - Required fields validation', async ({ page }) => {
-  await page.goto('http://localhost:3000/');
+  const homePage = new HomePage(page);
 
-  await page.locator('#searchButton').click();
+  await homePage.open();
 
-  await expect(page.locator('#searchResult'))
-    .toContainText('Email is required');
+  await homePage.clickSearch();
+
+  await homePage.expectSearchResultContains('Email is required');
 });

@@ -1,34 +1,36 @@
-import { test, expect } from '@playwright/test';
+import { test } from '@playwright/test';
+import { HomePage } from '../../pages/HomePage';
+import { PaymentPage } from '../../pages/PaymentPage';
+import { BookingPage } from '../../pages/BookingPage';
 
 test('Reservation 03 - Refundable change allowed', async ({ page }) => {
-  await page.goto('http://localhost:3000');
+  const homePage = new HomePage(page);
+  const paymentPage = new PaymentPage(page);
+  const bookingPage = new BookingPage(page);
 
-  await page.fill('#email', 'refundablechange@test.com');
-  await page.fill('#travelDate', '2027-08-15');
-  await page.selectOption('#reservationType', 'refundable');
-  await page.fill('#creditCard', '4111111111111111');
-  await page.fill('#expirationDate', '12/30');
-  await page.fill('#cvv', '123');
+  await homePage.open();
 
-  await page.click('#searchButton');
+  await homePage.enterEmail('refundablechange@test.com');
+  await bookingPage.selectTravelDate('2027-08-15');
+  await bookingPage.selectReservationType('refundable');
 
-  await expect(page.locator('#paymentResult'))
-    .toContainText('Payment successful');
+  await paymentPage.enterCreditCard('4111111111111111');
+  await paymentPage.enterExpirationDate('12/30');
+  await paymentPage.enterCVV('123');
 
-  await page.click('#bookNowButton');
+  await homePage.clickSearch();
 
-  await expect(page.locator('#bookingResult'))
-    .toContainText('Booking confirmed');
+  await paymentPage.expectPaymentResultContains('Payment successful');
 
-  await expect(page.locator('#confirmationNumber'))
-    .toContainText('OMNI-');
+  await bookingPage.clickBookNow();
+  await bookingPage.expectBookingResultContains('Booking confirmed');
+  await bookingPage.expectConfirmationNumberContains('OMNI-');
 
-  await page.click('#modifyReservationButton');
+  await bookingPage.clickModifyReservation();
+  await bookingPage.selectTravelDate('2027-09-15');
+  await bookingPage.clickSaveReservationChanges();
 
-  await page.fill('#travelDate', '2027-09-15');
-
-  await page.click('#saveReservationChangesButton');
-
-  await expect(page.locator('#reservationChangeResult'))
-    .toContainText('Reservation updated successfully');
+  await bookingPage.expectReservationChangeResultContains(
+    'Reservation updated successfully'
+  );
 });

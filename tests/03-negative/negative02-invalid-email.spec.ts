@@ -1,9 +1,12 @@
 import { test, expect } from '@playwright/test';
+import { HomePage } from '../../pages/HomePage';
 
 test('Negative Test 02 - Invalid email address', async ({ page }) => {
-  await page.goto('http://localhost:3000/');
+  const homePage = new HomePage(page);
 
-  await page.locator('#email').fill('notanemail');
+  await homePage.open();
 
-  await expect(page.locator('#email')).toHaveValue('notanemail');
+  await homePage.enterEmail('notanemail');
+
+  await expect(homePage.email).toHaveValue('notanemail');
 });

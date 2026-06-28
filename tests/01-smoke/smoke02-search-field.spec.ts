@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test } from '@playwright/test';
 import { HomePage } from '../../pages/HomePage';
 
 test('Smoke 02 - Search field accepts input', async ({ page }) => {
@@ -6,7 +6,7 @@ test('Smoke 02 - Search field accepts input', async ({ page }) => {
 
   await homePage.open();
 
-  await page.locator('#search').fill('Cancun');
+  await homePage.enterSearch('Cancun');
 
-  await expect(page.locator('#search')).toHaveValue('Cancun');
+  await homePage.expectSearchValue('Cancun');
 });

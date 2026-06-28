@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test } from '@playwright/test';
 import { HomePage } from '../../pages/HomePage';
 
 test('Smoke 05 - Booking flow starts', async ({ page }) => {
@@ -6,7 +6,7 @@ test('Smoke 05 - Booking flow starts', async ({ page }) => {
 
   await homePage.open();
 
-  await page.locator('#bookNowButton').click();
+  await homePage.clickBookNow();
 
-  await expect(page.locator('#bookingResult')).toBeVisible();
+  await homePage.expectBookingResultVisible();
 });

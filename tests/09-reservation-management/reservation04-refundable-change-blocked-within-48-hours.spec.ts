@@ -1,45 +1,39 @@
-import { test, expect } from '@playwright/test';
+import { test } from '@playwright/test';
+import { HomePage } from '../../pages/HomePage';
+import { PaymentPage } from '../../pages/PaymentPage';
+import { BookingPage } from '../../pages/BookingPage';
 
 test('Reservation 04 - Refundable change blocked within 48 hours', async ({ page }) => {
+  const homePage = new HomePage(page);
+  const paymentPage = new PaymentPage(page);
+  const bookingPage = new BookingPage(page);
 
-  await page.goto('http://localhost:3000');
-
-  await page.fill('#email', 'within48hours@test.com');
+  await homePage.open();
 
   const tomorrow = new Date();
   tomorrow.setDate(tomorrow.getDate() + 1);
-
   const travelDate = tomorrow.toISOString().split('T')[0];
 
-  await page.fill('#travelDate', travelDate);
+  await homePage.enterEmail('within48hours@test.com');
+  await bookingPage.selectTravelDate(travelDate);
+  await bookingPage.selectReservationType('refundable');
 
-  await page.selectOption('#reservationType', 'refundable');
+  await paymentPage.enterCreditCard('4111111111111111');
+  await paymentPage.enterExpirationDate('12/30');
+  await paymentPage.enterCVV('123');
 
-  await page.fill('#creditCard', '4111111111111111');
+  await homePage.clickSearch();
 
-  await page.fill('#expirationDate', '12/30');
+  await paymentPage.expectPaymentResultContains('Payment successful');
 
-  await page.fill('#cvv', '123');
+  await bookingPage.clickBookNow();
+  await bookingPage.expectBookingResultContains('Booking confirmed');
 
-  await page.click('#searchButton');
+  await bookingPage.clickModifyReservation();
+  await bookingPage.selectTravelDate('2027-12-31');
+  await bookingPage.clickSaveReservationChanges();
 
-  await expect(page.locator('#paymentResult'))
-    .toContainText('Payment successful');
-
-  await page.click('#bookNowButton');
-
-  await expect(page.locator('#bookingResult'))
-    .toContainText('Booking confirmed');
-
-  await page.click('#modifyReservationButton');
-
-  await page.fill('#travelDate', '2027-12-31');
-
-  await page.click('#saveReservationChangesButton');
-
-  await expect(page.locator('#reservationChangeResult'))
-    .toContainText(
-      'Modification blocked: refundable reservations cannot be changed within 48 hours'
-    );
-
+  await bookingPage.expectReservationChangeResultContains(
+    'Modification blocked: refundable reservations cannot be changed within 48 hours'
+  );
 });

@@ -1,12 +1,12 @@
-import { test, expect } from '@playwright/test';
+import { test } from '@playwright/test';
+import { HomePage } from '../../pages/HomePage';
 
 test('Regression 03 - Email validation still works', async ({ page }) => {
+  const homePage = new HomePage(page);
 
-  await page.goto('http://localhost:3000');
+  await homePage.open();
 
-  await page.click('#searchButton');
+  await homePage.clickSearch();
 
-  await expect(page.locator('#searchResult'))
-    .toHaveText('Email is required');
-
+  await homePage.expectSearchResult('Email is required');
 });

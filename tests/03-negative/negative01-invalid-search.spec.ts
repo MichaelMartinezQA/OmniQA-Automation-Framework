@@ -1,12 +1,14 @@
 import { test, expect } from '@playwright/test';
+import { HomePage } from '../../pages/HomePage';
 
 test('Negative Test 01 - Invalid search input', async ({ page }) => {
-  await page.goto('http://localhost:3000/');
+  const homePage = new HomePage(page);
 
-  await page.locator('#search').fill('$$$$$');
+  await homePage.open();
 
-  await page.locator('#searchButton').click();
+  await homePage.enterSearch('$$$$$');
+  await homePage.clickSearch();
 
-  await expect(page.locator('#searchResult'))
+  await expect(homePage.searchResult)
     .not.toContainText('Searching for: $$$$$');
 });

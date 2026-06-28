@@ -1,19 +1,24 @@
-import { test, expect } from '@playwright/test';
+import { test } from '@playwright/test';
+import { HomePage } from '../../pages/HomePage';
+import { PaymentPage } from '../../pages/PaymentPage';
 
 test('Payment Test 04 - Invalid CVV is rejected', async ({ page }) => {
-  await page.goto('http://localhost:3000');
+  const homePage = new HomePage(page);
+  const paymentPage = new PaymentPage(page);
 
-  await page.fill('#search', 'Miami');
-  await page.selectOption('#destination', 'Miami');
-  await page.selectOption('#travelType', 'Cruise');
-  await page.fill('#email', 'test@example.com');
-  await page.fill('#travelDate', '2026-12-15');
+  await homePage.open();
 
-  await page.fill('#creditCard', '4111111111111111');
-  await page.fill('#expirationDate', '12/30');
-  await page.fill('#cvv', '12');
+  await homePage.enterSearch('Miami');
+  await homePage.selectDestination('Miami');
+  await homePage.selectTravelType('Cruise');
+  await homePage.enterEmail('test@example.com');
+  await homePage.selectTravelDate('2026-12-15');
 
-  await page.click('#searchButton');
+  await paymentPage.enterCreditCard('4111111111111111');
+  await paymentPage.enterExpirationDate('12/30');
+  await paymentPage.enterCVV('12');
 
-  await expect(page.locator('#paymentResult')).toHaveText('Invalid CVV');
+  await homePage.clickSearch();
+
+  await paymentPage.expectPaymentResult('Invalid CVV');
 });

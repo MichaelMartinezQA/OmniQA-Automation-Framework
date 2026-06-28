@@ -1,20 +1,22 @@
-import { test, expect } from '@playwright/test';
+import { test } from '@playwright/test';
+import { HomePage } from '../../pages/HomePage';
+import { PaymentPage } from '../../pages/PaymentPage';
 
 test('Regression 05 - Form submission still succeeds', async ({ page }) => {
+  const homePage = new HomePage(page);
+  const paymentPage = new PaymentPage(page);
 
-  await page.goto('http://localhost:3000');
+  await homePage.open();
 
-  await page.fill('#email', 'test@test.com');
-  await page.fill('#travelDate', '2028-06-15');
-  await page.fill('#promoCode', 'SAVE10');
+  await homePage.enterEmail('test@test.com');
+  await homePage.selectTravelDate('2028-06-15');
+  await homePage.enterPromoCode('SAVE10');
 
-  await page.fill('#creditCard', '4111111111111111');
-  await page.fill('#expirationDate', '12/30');
-  await page.fill('#cvv', '123');
+  await paymentPage.enterCreditCard('4111111111111111');
+  await paymentPage.enterExpirationDate('12/30');
+  await paymentPage.enterCVV('123');
 
-  await page.click('#searchButton');
+  await homePage.clickSearch();
 
-  await expect(page.locator('#searchResult'))
-    .toContainText('Searching for');
-
+  await homePage.expectSearchResultContains('Searching for');
 });

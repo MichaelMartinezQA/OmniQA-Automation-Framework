@@ -1,20 +1,24 @@
-import { test, expect } from '@playwright/test';
+import { test } from '@playwright/test';
+import { HomePage } from '../../pages/HomePage';
+import { PaymentPage } from '../../pages/PaymentPage';
 
 test('Payment Test 05 - Payment timeout is handled correctly', async ({ page }) => {
-  await page.goto('http://localhost:3000');
+  const homePage = new HomePage(page);
+  const paymentPage = new PaymentPage(page);
 
-  await page.fill('#search', 'Miami');
-  await page.selectOption('#destination', 'Miami');
-  await page.selectOption('#travelType', 'Cruise');
-  await page.fill('#email', 'test@example.com');
-  await page.fill('#travelDate', '2026-12-15');
+  await homePage.open();
 
-  await page.fill('#creditCard', '4000000000009995');
-  await page.fill('#expirationDate', '12/30');
-  await page.fill('#cvv', '123');
+  await homePage.enterSearch('Miami');
+  await homePage.selectDestination('Miami');
+  await homePage.selectTravelType('Cruise');
+  await homePage.enterEmail('test@example.com');
+  await homePage.selectTravelDate('2026-12-15');
 
-  await page.click('#searchButton');
+  await paymentPage.enterCreditCard('4000000000009995');
+  await paymentPage.enterExpirationDate('12/30');
+  await paymentPage.enterCVV('123');
 
-  await expect(page.locator('#paymentResult'))
-    .toHaveText('Payment timeout. Please try again.');
+  await homePage.clickSearch();
+
+  await paymentPage.expectPaymentResult('Payment timeout. Please try again.');
 });

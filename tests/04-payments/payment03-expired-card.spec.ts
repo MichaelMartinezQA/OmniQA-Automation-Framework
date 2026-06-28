@@ -1,19 +1,24 @@
-import { test, expect } from '@playwright/test';
+import { test } from '@playwright/test';
+import { HomePage } from '../../pages/HomePage';
+import { PaymentPage } from '../../pages/PaymentPage';
 
 test('Payment Test 03 - Expired card is rejected', async ({ page }) => {
-  await page.goto('http://localhost:3000');
+  const homePage = new HomePage(page);
+  const paymentPage = new PaymentPage(page);
 
-  await page.fill('#search', 'Miami');
-  await page.selectOption('#destination', 'Miami');
-  await page.selectOption('#travelType', 'Cruise');
-  await page.fill('#email', 'test@example.com');
-  await page.fill('#travelDate', '2026-12-15');
+  await homePage.open();
 
-  await page.fill('#creditCard', '4111111111111111');
-  await page.fill('#expirationDate', '01/20');
-  await page.fill('#cvv', '123');
+  await homePage.enterSearch('Miami');
+  await homePage.selectDestination('Miami');
+  await homePage.selectTravelType('Cruise');
+  await homePage.enterEmail('test@example.com');
+  await homePage.selectTravelDate('2026-12-15');
 
-  await page.click('#searchButton');
+  await paymentPage.enterCreditCard('4111111111111111');
+  await paymentPage.enterExpirationDate('01/20');
+  await paymentPage.enterCVV('123');
 
-  await expect(page.locator('#paymentResult')).toHaveText('Card is expired');
+  await homePage.clickSearch();
+
+  await paymentPage.expectPaymentResult('Card is expired');
 });

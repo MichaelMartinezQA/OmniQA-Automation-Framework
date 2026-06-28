@@ -1,14 +1,15 @@
-import { test, expect } from '@playwright/test';
+import { test } from '@playwright/test';
+import { HomePage } from '../../pages/HomePage';
 
 test('Negative Test 03 - Travel date is required', async ({ page }) => {
-  await page.goto('http://localhost:3000/');
+  const homePage = new HomePage(page);
 
-  await page.locator('#search').fill('Miami Cruise');
+  await homePage.open();
 
-  await page.locator('#email').fill('test@example.com');
+  await homePage.enterSearch('Miami Cruise');
+  await homePage.enterEmail('test@example.com');
 
-  await page.locator('#searchButton').click();
+  await homePage.clickSearch();
 
-  await expect(page.locator('#searchResult'))
-    .toContainText('Travel Date is required');
+  await homePage.expectSearchResultContains('Travel Date is required');
 });

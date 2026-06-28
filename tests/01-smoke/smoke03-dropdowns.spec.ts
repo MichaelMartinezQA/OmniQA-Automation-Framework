@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test } from '@playwright/test';
 import { HomePage } from '../../pages/HomePage';
 
 test('Smoke 03 - Destination dropdown is visible', async ({ page }) => {
@@ -6,5 +6,5 @@ test('Smoke 03 - Destination dropdown is visible', async ({ page }) => {
 
   await homePage.open();
 
-  await expect(page.locator('#destination')).toBeVisible();
+  await homePage.expectDestinationVisible();
 });
