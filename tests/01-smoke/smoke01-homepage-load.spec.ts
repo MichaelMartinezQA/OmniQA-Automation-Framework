@@ -1,8 +1,12 @@
-import { test, expect } from '@playwright/test';
+import { test } from '@playwright/test';
+import { HomePage } from '../../pages/HomePage';
+import { testUsers } from '../../utils/testData';
 
-test('Smoke Test 01 - Homepage loads successfully', async ({ page }) => {
-  await page.goto('http://127.0.0.1:3000/');
+for (const user of testUsers) {
+  test(`Smoke 01 - Homepage loads (${user.firstName})`, async ({ page }) => {
+    const homePage = new HomePage(page);
 
-  await expect(page).toHaveTitle(/OmniQA/);
-  await expect(page.getByRole('heading', { name: 'OmniQA' })).toBeVisible();
-});
+    await homePage.open();
+    await homePage.verifyLoaded();
+  });
+}

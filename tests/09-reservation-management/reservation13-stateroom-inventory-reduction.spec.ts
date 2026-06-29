@@ -1,28 +1,30 @@
 import { test, expect } from '@playwright/test';
+import { HomePage } from '../../pages/HomePage';
+import { PaymentPage } from '../../pages/PaymentPage';
+import { BookingPage } from '../../pages/BookingPage';
 
 test('Reservation 13 - Stateroom Inventory Reduction', async ({ page }) => {
-  await page.goto('http://localhost:3000');
+  const homePage = new HomePage(page);
+  const paymentPage = new PaymentPage(page);
+  const bookingPage = new BookingPage(page);
+
+  await homePage.open();
 
   await expect(page.locator('#inventoryStatus'))
     .toContainText('Staterooms Available: 3');
 
-  await page.locator('#email').fill('stateroom@test.com');
+  await homePage.enterEmail('stateroom@test.com');
+  await bookingPage.selectTravelDate('2027-08-15');
+  await bookingPage.selectUnitType('stateroom');
+  await bookingPage.selectReservationType('refundable');
 
-  await page.locator('#travelDate').fill('2027-08-15');
+  await paymentPage.enterCreditCard('4111111111111111');
+  await paymentPage.enterExpirationDate('12/30');
+  await paymentPage.enterCVV('123');
 
-  await page.locator('#unitType').selectOption('stateroom');
+  await homePage.clickSearch();
 
-  await page.locator('#reservationType').selectOption('refundable');
-
-  await page.locator('#creditCard').fill('4111111111111111');
-
-  await page.locator('#expirationDate').fill('12/30');
-
-  await page.locator('#cvv').fill('123');
-
-  await page.locator('#searchButton').click();
-
-  await page.locator('#bookNowButton').click();
+  await bookingPage.clickBookNow();
 
   await expect(page.locator('#inventoryStatus'))
     .toContainText('Staterooms Available: 2');

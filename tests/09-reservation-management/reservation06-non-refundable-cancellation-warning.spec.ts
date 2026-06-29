@@ -1,38 +1,34 @@
-import { test, expect } from '@playwright/test';
+import { test } from '@playwright/test';
+import { HomePage } from '../../pages/HomePage';
+import { PaymentPage } from '../../pages/PaymentPage';
+import { BookingPage } from '../../pages/BookingPage';
 
 test('Reservation 06 - Non-refundable cancellation warning', async ({ page }) => {
+  const homePage = new HomePage(page);
+  const paymentPage = new PaymentPage(page);
+  const bookingPage = new BookingPage(page);
 
-  await page.goto('http://localhost:3000');
+  await homePage.open();
 
-  await page.fill('#email', 'cancelwarning@test.com');
+  await homePage.enterEmail('cancelwarning@test.com');
+  await bookingPage.selectTravelDate('2027-08-15');
+  await bookingPage.selectReservationType('non-refundable');
+  await bookingPage.checkNonRefundableAcknowledgement();
 
-  await page.fill('#travelDate', '2027-08-15');
+  await paymentPage.enterCreditCard('4111111111111111');
+  await paymentPage.enterExpirationDate('12/30');
+  await paymentPage.enterCVV('123');
 
-  await page.selectOption('#reservationType', 'non-refundable');
+  await homePage.clickSearch();
 
-  await page.check('#nonRefundableAcknowledgement');
+  await paymentPage.expectPaymentResultContains('Payment successful');
 
-  await page.fill('#creditCard', '4111111111111111');
+  await bookingPage.clickBookNow();
+  await bookingPage.expectBookingResultContains('Booking confirmed');
 
-  await page.fill('#expirationDate', '12/30');
+  await bookingPage.clickCancelReservation();
 
-  await page.fill('#cvv', '123');
-
-  await page.click('#searchButton');
-
-  await expect(page.locator('#paymentResult'))
-    .toContainText('Payment successful');
-
-  await page.click('#bookNowButton');
-
-  await expect(page.locator('#bookingResult'))
-    .toContainText('Booking confirmed');
-
-  await page.click('#cancelReservationButton');
-
-  await expect(page.locator('#cancellationResult'))
-    .toContainText(
-      'Warning: non-refundable reservations are not eligible for refunds'
-    );
-
+  await bookingPage.expectCancellationResultContains(
+    'Warning: non-refundable reservations are not eligible for refunds'
+  );
 });

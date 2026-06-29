@@ -1,30 +1,28 @@
-import { test, expect } from '@playwright/test';
+import { test } from '@playwright/test';
+import { HomePage } from '../../pages/HomePage';
+import { PaymentPage } from '../../pages/PaymentPage';
+import { BookingPage } from '../../pages/BookingPage';
 
 test('Reservation 01 - Refundable booking', async ({ page }) => {
-  await page.goto('http://localhost:3000');
+  const homePage = new HomePage(page);
+  const paymentPage = new PaymentPage(page);
+  const bookingPage = new BookingPage(page);
 
-  await page.locator('#email').fill('michael@test.com');
+  await homePage.open();
 
-  await page.locator('#travelDate').fill('2027-08-15');
+  await homePage.enterEmail('michael@test.com');
+  await bookingPage.selectTravelDate('2027-08-15');
+  await bookingPage.selectReservationType('refundable');
 
-  await page.locator('#reservationType').selectOption('refundable');
+  await paymentPage.enterCreditCard('4111111111111111');
+  await paymentPage.enterExpirationDate('12/30');
+  await paymentPage.enterCVV('123');
 
-  await page.locator('#creditCard').fill('4111111111111111');
+  await homePage.clickSearch();
 
-  await page.locator('#expirationDate').fill('12/30');
+  await paymentPage.expectPaymentResultContains('Payment successful');
 
-  await page.locator('#cvv').fill('123');
-
-  await page.locator('#searchButton').click();
-
-  await expect(page.locator('#paymentResult'))
-    .toContainText('Payment successful');
-
-  await page.locator('#bookNowButton').click();
-
-  await expect(page.locator('#bookingResult'))
-    .toContainText('Booking confirmed');
-
-  await expect(page.locator('#confirmationNumber'))
-    .toContainText('OMNI-');
+  await bookingPage.clickBookNow();
+  await bookingPage.expectBookingResultContains('Booking confirmed');
+  await bookingPage.expectConfirmationNumberContains('OMNI-');
 });

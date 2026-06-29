@@ -15,11 +15,21 @@ test.describe('Performance 09 - Stress Test', () => {
       await page.locator('#expirationDate').fill('12/30');
       await page.locator('#cvv').fill('123');
 
-      await page.locator('#searchButton').click();
+      const button = page.locator('#searchButton');
 
+      await expect(button).toBeEnabled();
+
+      await button.click();
+
+      // 🔥 CRITICAL FIX: wait for UI to finish updating before next iteration
       await expect(page.locator('#searchResult'))
         .toHaveText(`Searching for: Stress ${i}`);
 
+      await expect(page.locator('#paymentResult'))
+        .toHaveText('Payment successful');
+
+      // small sync buffer for Firefox layout engine stability
+      await page.waitForTimeout(10);
     }
 
   });

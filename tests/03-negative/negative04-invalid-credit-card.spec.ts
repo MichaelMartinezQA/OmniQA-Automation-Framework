@@ -1,15 +1,19 @@
-import { test, expect } from '@playwright/test';
+import { test } from '@playwright/test';
+import { HomePage } from '../../pages/HomePage';
+import { PaymentPage } from '../../pages/PaymentPage';
 
 test('Negative Test 04 - Credit card is required', async ({ page }) => {
-  await page.goto('http://localhost:3000');
+  const homePage = new HomePage(page);
+  const paymentPage = new PaymentPage(page);
 
-  await page.fill('#search', 'Miami Cruise');
-  await page.fill('#email', 'test@test.com');
-  await page.fill('#travelDate', '2026-12-25');
-  await page.fill('#promoCode', 'SAVE10');
+  await homePage.open();
 
-  await page.click('#searchButton');
+  await homePage.enterSearch('Miami Cruise');
+  await homePage.enterEmail('test@test.com');
+  await homePage.selectTravelDate('2026-12-25');
+  await homePage.enterPromoCode('SAVE10');
 
-  await expect(page.locator('#paymentResult'))
-    .toContainText('Credit Card is required');
+  await homePage.clickSearch();
+
+  await paymentPage.expectPaymentResultContains('Credit Card is required');
 });

@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "firstName": "Michael",
+    "lastName": "Martinez",
+    "destination": "Cancun",
+    "travelType": "Hotel",
+    "email": "michael@example.com",
+    "travelDate": "2027-07-10",
+    "promoCode": "SUMMER25"
+  },
+  {
+    "id": 2,
+    "firstName": "Sarah",
+    "lastName": "Johnson",
+    "destination": "Cozumel",
+    "travelType": "Cruise",
+    "email": "sarah@example.com",
+    "travelDate": "2027-08-15",
+    "promoCode": "CRUISE10"
+  },
+  {
+    "id": 3,
+    "firstName": "David",
+    "lastName": "Wilson",
+    "destination": "Jamaica",
+    "travelType": "Hotel",
+    "email": "david@example.com",
+    "travelDate": "2027-09-20",
+    "promoCode": ""
+  }
+]

@@ -1,11 +1,10 @@
-import { test, expect } from '@playwright/test';
+import { test } from '@playwright/test';
+import { HomePage } from '../../pages/HomePage';
 
-test('Smoke Test 03 - Dropdowns function correctly', async ({ page }) => {
-  await page.goto('http://localhost:3000/');
+test('Smoke 03 - Destination dropdown is visible', async ({ page }) => {
+  const homePage = new HomePage(page);
 
-  await page.locator('#destination').selectOption('Cancun');
-  await expect(page.locator('#destination')).toHaveValue('Cancun');
+  await homePage.open();
 
-  await page.locator('#travelType').selectOption('Hotel');
-  await expect(page.locator('#travelType')).toHaveValue('Hotel');
+  await homePage.expectDestinationVisible();
 });

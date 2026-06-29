@@ -1,42 +1,36 @@
-import { test, expect } from '@playwright/test';
+import { test } from '@playwright/test';
+import { HomePage } from '../../pages/HomePage';
+import { PaymentPage } from '../../pages/PaymentPage';
+import { BookingPage } from '../../pages/BookingPage';
 
 test('Reservation 05 - Non-refundable change blocked', async ({ page }) => {
+  const homePage = new HomePage(page);
+  const paymentPage = new PaymentPage(page);
+  const bookingPage = new BookingPage(page);
 
-  await page.goto('http://localhost:3000');
+  await homePage.open();
 
-  await page.fill('#email', 'nonrefundablechange@test.com');
+  await homePage.enterEmail('nonrefundablechange@test.com');
+  await bookingPage.selectTravelDate('2027-08-15');
+  await bookingPage.selectReservationType('non-refundable');
+  await bookingPage.checkNonRefundableAcknowledgement();
 
-  await page.fill('#travelDate', '2027-08-15');
+  await paymentPage.enterCreditCard('4111111111111111');
+  await paymentPage.enterExpirationDate('12/30');
+  await paymentPage.enterCVV('123');
 
-  await page.selectOption('#reservationType', 'non-refundable');
+  await homePage.clickSearch();
 
-  await page.check('#nonRefundableAcknowledgement');
+  await paymentPage.expectPaymentResultContains('Payment successful');
 
-  await page.fill('#creditCard', '4111111111111111');
+  await bookingPage.clickBookNow();
+  await bookingPage.expectBookingResultContains('Booking confirmed');
 
-  await page.fill('#expirationDate', '12/30');
+  await bookingPage.clickModifyReservation();
+  await bookingPage.selectTravelDate('2027-12-31');
+  await bookingPage.clickSaveReservationChanges();
 
-  await page.fill('#cvv', '123');
-
-  await page.click('#searchButton');
-
-  await expect(page.locator('#paymentResult'))
-    .toContainText('Payment successful');
-
-  await page.click('#bookNowButton');
-
-  await expect(page.locator('#bookingResult'))
-    .toContainText('Booking confirmed');
-
-  await page.click('#modifyReservationButton');
-
-  await page.fill('#travelDate', '2027-12-31');
-
-  await page.click('#saveReservationChangesButton');
-
-  await expect(page.locator('#reservationChangeResult'))
-    .toContainText(
-      'Modification blocked: non-refundable reservations cannot be changed'
-    );
-
+  await bookingPage.expectReservationChangeResultContains(
+    'Modification blocked: non-refundable reservations cannot be changed'
+  );
 });

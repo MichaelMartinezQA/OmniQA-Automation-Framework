@@ -1,22 +1,24 @@
 import { test, expect } from '@playwright/test';
+import { HomePage } from '../../pages/HomePage';
+import { PaymentPage } from '../../pages/PaymentPage';
 
 test('Reservation 15 - Seasonal Pricing Validation', async ({ page }) => {
-  await page.goto('http://localhost:3000');
+  const homePage = new HomePage(page);
+  const paymentPage = new PaymentPage(page);
+
+  await homePage.open();
 
   await expect(page.locator('#priceDisplay'))
     .toContainText('$1000');
 
-  await page.locator('#email').fill('pricing@test.com');
+  await homePage.enterEmail('pricing@test.com');
+  await homePage.selectTravelDate('2027-12-20');
 
-  await page.locator('#travelDate').fill('2027-12-20');
+  await paymentPage.enterCreditCard('4111111111111111');
+  await paymentPage.enterExpirationDate('12/30');
+  await paymentPage.enterCVV('123');
 
-  await page.locator('#creditCard').fill('4111111111111111');
-
-  await page.locator('#expirationDate').fill('12/30');
-
-  await page.locator('#cvv').fill('123');
-
-  await page.locator('#searchButton').click();
+  await homePage.clickSearch();
 
   await expect(page.locator('#priceDisplay'))
     .toContainText('$1000');

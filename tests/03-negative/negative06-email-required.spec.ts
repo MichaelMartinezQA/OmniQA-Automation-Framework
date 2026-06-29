@@ -1,16 +1,18 @@
-import { test, expect } from '@playwright/test';
+import { test } from '@playwright/test';
+import { HomePage } from '../../pages/HomePage';
+import { PaymentPage } from '../../pages/PaymentPage';
 
 test('Negative Test 06 - Email is required before search', async ({ page }) => {
-  await page.goto('http://localhost:3000/');
+  const homePage = new HomePage(page);
+  const paymentPage = new PaymentPage(page);
 
-  await page.locator('#search').fill('Miami Cruise');
+  await homePage.open();
 
-  await page.locator('#travelDate').fill('2026-12-25');
+  await homePage.enterSearch('Miami Cruise');
+  await homePage.selectTravelDate('2026-12-25');
+  await paymentPage.enterCreditCard('4111111111111111');
 
-  await page.locator('#creditCard').fill('4111111111111111');
+  await homePage.clickSearch();
 
-  await page.locator('#searchButton').click();
-
-  await expect(page.locator('#searchResult'))
-    .toContainText('Email is required');
+  await homePage.expectSearchResultContains('Email is required');
 });

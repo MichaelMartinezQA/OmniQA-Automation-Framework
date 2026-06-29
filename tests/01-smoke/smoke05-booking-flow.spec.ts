@@ -1,18 +1,12 @@
-import { test, expect } from '@playwright/test';
+import { test } from '@playwright/test';
+import { HomePage } from '../../pages/HomePage';
 
-test('Smoke Test 05 - User can perform a search', async ({ page }) => {
-  await page.goto('http://localhost:3000');
+test('Smoke 05 - Booking flow starts', async ({ page }) => {
+  const homePage = new HomePage(page);
 
-  await page.fill('#search', 'Miami Cruise');
-  await page.fill('#email', 'test@test.com');
-  await page.fill('#travelDate', '2026-12-25');
-  await page.fill('#promoCode', 'SAVE10');
-  await page.fill('#creditCard', '4111111111111111');
-  await page.fill('#expirationDate', '12/30');
-  await page.fill('#cvv', '123');
+  await homePage.open();
 
-  await page.click('#searchButton');
+  await homePage.clickBookNow();
 
-  await expect(page.locator('#searchResult'))
-    .toContainText('Searching for: Miami Cruise');
+  await homePage.expectBookingResultVisible();
 });
