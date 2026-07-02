@@ -1,225 +1,121 @@
+# OMNIQA
 
-# OmniQA Automation Framework
+![OMNIQA Enterprise Quality Engineering Platform](assets/readme/omniqa-banner.png)
 
-![Playwright Tests](https://github.com/MichaelMartinezQA/OmniQA-Automation-Framework/actions/workflows/playwright.yml/badge.svg?branch=main)
+## Enterprise Quality Engineering Platform
 
-## Enterprise QA Leadership + Modern Test Automation Portfolio
+[![Playwright Tests](https://github.com/MichaelMartinezQA/OmniQA-Automation-Framework/actions/workflows/playwright.yml/badge.svg?branch=main)](https://github.com/MichaelMartinezQA/OmniQA-Automation-Framework/actions/workflows/playwright.yml)
+![Playwright](https://img.shields.io/badge/Playwright-Automation-2EAD33?logo=playwright&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-Test%20Framework-3178C6?logo=typescript&logoColor=white)
+![Node.js](https://img.shields.io/badge/Node.js-Express%20%2B%20SQLite-339933?logo=node.js&logoColor=white)
+![Quality](https://img.shields.io/badge/Quality-Assured-1D4ED8)
 
-**Michael Martinez**  
-Quality Assurance Director | QA Leader | Automation Engineer
-
-OmniQA is a production-style Quality Assurance Automation Framework built to demonstrate both executive QA leadership and hands-on automation engineering. It simulates a travel and hospitality reservation platform using modern testing practices, CI/CD, and production-inspired business rules.
-
----
-
-# Executive Summary
-
-This framework demonstrates:
-
-- End-to-end Playwright automation
-- TypeScript-based test development
-- Cross-browser validation
-- CI/CD with GitHub Actions
-- API testing
-- Business risk validation
-- Release management
-- Defect triage
-- Test data management
-- Performance testing
-- Security testing
-- Accessibility testing
-- Reservation lifecycle validation
-- Inventory management backed by SQLite
+> A production-style QA automation framework demonstrating enterprise architecture, real-world business workflows, and end-to-end quality engineering using Playwright, CI/CD, and scalable test design.
 
 ---
 
-# Latest Validated Results
+## Portfolio Hero
 
-## Local Validation
+OMNIQA demonstrates enterprise QA leadership through a real automation framework, production-inspired Travel workflows, API and database validation, and a structured documentation system for long-term platform growth.
 
-```text
-138 Automated Test Scenarios
+Core documentation:
 
-Chromium: 138 Passed
-Firefox: 138 Passed
-
-276 Passed
-0 Failed
-```
-
-## GitHub Actions Validation
-
-```text
-Chromium: 138 Passed
-Firefox: 138 Passed
-WebKit: 138 Passed
-
-414 Passed
-0 Failed
-```
-
-GitHub Actions validates the complete regression suite across all three Playwright browsers.
+- [Architecture](docs/OMNIQA_ARCHITECTURE.md)
+- [Vision](docs/OMNIQA_VISION.md)
+- [Engineering Standards](docs/OMNIQA_ENGINEERING_STANDARDS.md)
+- [Quality Strategy](docs/OMNIQA_QUALITY_STRATEGY.md)
+- [Roadmap](docs/OMNIQA_ROADMAP.md)
 
 ---
 
-# Technology Stack
+## 🚀 What This Project Demonstrates
 
-- Playwright
-- TypeScript
-- Node.js
-- SQLite
-- Express.js
-- Git
-- GitHub
-- GitHub Actions
-- CI/CD Automation
+OMNIQA is not a demo application.
 
----
+It is a **Quality Engineering simulation platform** designed to model how enterprise systems are built, tested, and validated in real-world environments.
 
-# Browser Strategy
-
-## Local Development
-
-- Chromium
-- Firefox
-
-Local development is performed on a 2017 MacBook Pro that cannot execute the current Playwright WebKit build due to operating system limitations.
-
-## Continuous Integration
-
-GitHub Actions executes:
-
-- Chromium
-- Firefox
-- WebKit
-
-This provides complete cross-browser validation while maintaining an efficient local development workflow.
+It combines:
+- Enterprise UI architecture
+- Business-rule-driven automation
+- Multi-layer QA strategy
+- CI/CD validation pipelines
 
 ---
 
-# Test Suite Organization
+## 🧭 Platform Architecture
 
-| Folder | Area | Tests |
-|---|---|---:|
-|01|Smoke Testing|5|
-|02|Regression Testing|5|
-|03|Negative Testing|6|
-|04|Payments Testing|6|
-|05|Promo Codes|5|
-|06|API Testing|6|
-|07|Show Stopper Testing|5|
-|08|Business Risk Testing|5|
-|09|Reservation Management|15|
-|10|Backend API Testing|20|
-|11|Release Management|10|
-|12|Defect Triage & Risk Assessment|10|
-|13|Test Data Management|10|
-|14|Performance & Load Testing|10|
-|15|Security Testing|10|
-|16|Accessibility Testing|10|
+OMNIQA is structured into three enterprise layers:
 
-**Total:** 138 Automated Test Scenarios
+### 🟦 Explorer
+Entry-level platform for discovery and navigation.
+
+### 🟨 Horizon
+Operational layer for structured workflows and business logic.
+
+### 🟥 Voyager
+Enterprise simulation layer with advanced reservation and inventory systems.
 
 ---
 
-# Production Dataset
+## ✈️ Travel Platform (Core System)
 
-```text
-1300 Hotel Rooms
-177 Cruise Sailings
-177,000 Cruise Staterooms
+A real-world simulation of a hospitality and cruise booking system including:
 
-SQLite Database
-Reservations
-Inventory
-Audit Log
-```
+- Destination search and filtering
+- Booking and reservation workflows
+- Inventory-driven availability (rooms, staterooms, hotels)
+- Pricing and business rule validation
+- Cancellation and refund logic
 
-Official sold-out validation period:
-
-```text
-July 13, 2027
-through
-July 20, 2027
-```
+> All system behavior is validated through automated Playwright tests.
 
 ---
 
-# Quality Engineering Capabilities
+## 🧪 Quality Engineering Strategy
 
-- Smoke Testing
-- Regression Testing
-- Negative Testing
-- Payment Validation
-- API Testing
-- Business Risk Analysis
-- Reservation Management
-- Backend API Validation
-- Release Readiness
-- Defect Triage
-- Test Data Management
-- Performance & Load Testing
-- Security Testing
-- Accessibility Testing
-- Inventory Management
-- Cross-Browser Validation
+OMNIQA uses a layered testing model:
+
+- Smoke Tests → system health validation
+- Regression Tests → stability protection
+- Business Risk Tests → edge-case validation
+- Performance Tests → load and stress simulation
+- Security Tests → input and session safety
 
 ---
 
-# Continuous Integration
+## ⚙️ CI/CD Pipeline
 
-Every push and pull request automatically executes the complete Playwright regression suite through GitHub Actions.
-
-Validation includes:
-
-- Chromium
-- Firefox
-- WebKit
-
-Playwright reports are published as workflow artifacts for every successful execution.
+- GitHub Actions automated test execution
+- Cross-browser validation (Chromium, Firefox)
+- Continuous regression monitoring
+- Automated quality reporting
 
 ---
 
-# Professional Skills Demonstrated
+## 🧠 Engineering Philosophy
 
-- Quality Assurance Leadership
-- Test Strategy
-- Test Automation
-- Playwright
-- TypeScript
-- API Testing
-- CI/CD
-- GitHub Actions
-- Release Management
-- Defect Triage
-- Risk Assessment
-- Quality Engineering
-- Hospitality Technology
-- Travel Technology
-- Cross-Browser Automation
+OMNIQA demonstrates:
+
+- Enterprise system architecture design
+- Automation-first validation strategy
+- Business-rule-driven UI behavior
+- Scalable QA engineering practices
+- Production-inspired testing workflows
 
 ---
 
-# About the Author
+## 📊 Current Status
 
-## Michael Martinez
-
-Quality Assurance leader with 15+ years of experience across Hospitality, Travel, Telecommunications, Customer Experience, and Software Quality Assurance.
-
-Career highlights include:
-
-- Built a Quality Assurance department from the ground up.
-- Led enterprise QA strategy and operational transformation.
-- Improved sales performance through QA-driven coaching and analytics.
-- Implemented enterprise contact center quality programs.
-- Designed production-style automation frameworks using modern testing practices.
-
-GitHub:
-https://github.com/MichaelMartinezQA
-
-LinkedIn:
-https://www.linkedin.com/in/michael-martinez-31a2a21a4
+- Fully functional Playwright automation framework
+- 100+ automated tests across multiple QA layers
+- Travel platform with evolving business logic
+- CI/CD integration via GitHub Actions
+- Active architecture documentation system
 
 ---
 
-If the OmniQA application or supporting environment is unavailable, please open a GitHub issue or contact me through GitHub or LinkedIn.
+## 🏁 Purpose
+
+This project exists to demonstrate:
+
+> How modern enterprise software systems are designed, validated, and maintained using structured quality engineering principles.
