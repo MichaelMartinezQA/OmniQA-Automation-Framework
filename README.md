@@ -8,9 +8,22 @@
 ![Cross Browser](https://img.shields.io/badge/Cross--Browser-Chromium%20%2B%20Firefox-1D4ED8)
 ![Certification](https://img.shields.io/badge/Enterprise%20Certification-214%20Passed-0F766E)
 
+> **Actively developed — latest Enterprise certification: August 2026.**
+
+## Latest Enterprise Milestone — August 2026
+
+| **226 scheduled** | **214 passed** | **12 intentional future-scope placeholders** | **0 failed** |
+| ---: | ---: | ---: | ---: |
+
+**Cross-browser certification:** Chromium + Firefox
+
+This milestone demonstrates Enterprise Playwright automation, TypeScript/JavaScript, stateful workflow testing, deterministic synchronization, regression engineering, requirements-to-test traceability, and failure/root-cause classification.
+
 OmniQA is a production-inspired quality engineering portfolio built around Playwright, TypeScript/JavaScript, API and database validation, and disciplined regression design. It demonstrates how complex, stateful user journeys can be translated from requirements into deterministic automation and cross-browser certification.
 
 This public repository presents the engineering methods, measurable outcomes, and portfolio-safe examples. Proprietary product logic and implementation details remain private.
+
+**Engineering progression:** Earlier framework work → expanded automation architecture → stateful Enterprise workflows → Chromium + Firefox certification → current August 2026 milestone.
 
 ## What OmniQA Demonstrates
 
@@ -23,7 +36,7 @@ This public repository presents the engineering methods, measurable outcomes, an
 - Requirements-to-test traceability and evidence-based certification
 - Git/GitHub workflow discipline with intentional private/public source governance
 
-## Latest Enterprise Certification
+## Certification Detail
 
 | Result | Count |
 | --- | ---: |
