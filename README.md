@@ -10,6 +10,10 @@
 
 > **Actively developed — latest Enterprise certification: August 2026.**
 
+## OmniQA CI v1.1 Showcase
+
+See the [OmniQA CI v1.1 three-browser certification showcase](docs/OmniQA_CI_v1.1_Showcase.md) for the current public-safe Test Pyramid and GitHub-hosted certification result.
+
 ## Latest Enterprise Milestone — August 2026
 
 | **226 scheduled** | **214 passed** | **12 intentional future-scope placeholders** | **0 failed** |
