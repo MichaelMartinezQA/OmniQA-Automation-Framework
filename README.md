@@ -1,6 +1,6 @@
 # OmniQA
 
-![OmniQA — Enterprise Quality Engineering and Certification](assets/readme/omniqa-ci-v1.1-hero.svg)
+![OmniQA](assets/readme/omniqa-creator-logo.png)
 
 OmniQA is an enterprise quality-engineering and certification platform built to produce deterministic, traceable evidence across application layers and real browser seams.
 
