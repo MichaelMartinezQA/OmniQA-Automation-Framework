@@ -4,6 +4,8 @@ OmniQA's Test Pyramid transition reflects engineering maturity. Approximately 90
 
 Deterministic validation now supports focused browser certification for behavior that genuinely depends on a browser. The complete pipeline runs on GitHub-hosted infrastructure with Chromium, Firefox, and WebKit as mandatory gates.
 
+This certification describes the private OmniQA system. The conventional examples and sample workflow in this public repository are intentionally separate and are not presented as the certified private pipeline.
+
 ```mermaid
 flowchart TD
     L[Lint] --> T[Typecheck]

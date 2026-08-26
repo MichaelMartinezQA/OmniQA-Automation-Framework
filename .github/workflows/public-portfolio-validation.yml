@@ -1,0 +1,27 @@
+name: Public Portfolio Validation
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  validate-public-portfolio:
+    name: Validate public-safe content
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check out public portfolio
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Validate public portfolio
+        run: node scripts/validate-public-portfolio.mjs
