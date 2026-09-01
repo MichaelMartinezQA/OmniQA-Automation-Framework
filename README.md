@@ -13,9 +13,10 @@ The current private OmniQA system is certified through a sequential GitHub-hoste
 | Lint | Pass |
 | Typecheck | Pass — 0 errors |
 | Runtime validation | Pass |
-| Foundation | 716 / 716 |
-| Unit | 716 / 716 |
+| Foundation | 770 / 770 |
+| Full Unit | 876 / 876 |
 | API / Integration | 11 / 11 |
+| Postman / Newman HTTP API Contract | 46 / 46 requests · 51 / 51 assertions |
 | Chromium | 71 / 71 |
 | Firefox | 71 / 71 |
 | WebKit | 71 / 71 |
@@ -29,30 +30,34 @@ OmniQA's Test Pyramid transition reflects engineering maturity. Approximately 90
 
 This figure describes behavioral specification maturity for the relevant core engines. It does **not** mean 90% product completion, production readiness, test coverage, or feature completion.
 
+Today's Test Pyramid could not have been designed on day one because today's engines and behavioral contracts did not yet exist. As OmniQA matured, deterministic behavior became eligible for validation closer to its owning layer, while browser E2E became focused on genuine browser seams. The newest stage adds real-HTTP contract validation without replacing the existing API and integration layer.
+
 ```mermaid
 flowchart TD
     A[Behavioral Authority] --> C[Deterministic Contracts]
     C --> F[Foundation]
     F --> U[Unit]
     U --> I[API / Integration]
-    I --> B[Unique Browser Seams]
+    I --> H[Postman / Newman HTTP API Contract]
+    H --> B[Unique Browser Seams]
     B --> X[Chromium + Firefox + WebKit]
     X --> G[GitHub-hosted Certification]
 ```
 
-Deterministic layers own repeatable state, calculation, transition, and boundary evidence. Browser certification remains focused on behavior that genuinely requires a rendering engine, including interaction, accessibility, focus, event ordering, and viewport behavior.
+Deterministic layers own repeatable state, calculation, transition, and boundary evidence. Vitest API/Integration provides controlled integration validation. Postman/Newman adds real HTTP validation against the running OmniQA service. Playwright browser certification remains focused on behavior that genuinely requires a rendering engine, including interaction, accessibility, focus, event ordering, and viewport behavior.
 
 ## Capabilities and Technology
 
 - Deterministic Foundation and Unit validation
 - Controlled API and integration validation
+- Real-HTTP contract validation with Postman and Newman
 - Cross-browser certification with Playwright
 - Accessibility validation with axe-core
 - Strict TypeScript and ESLint gates
 - Runtime validation and GitHub Actions governance
 - Public/private source and publication safeguards
 
-**Technology:** Playwright · TypeScript · JavaScript · Vitest · ESLint · Node.js · Express · SQLite · axe-core · GitHub Actions
+**Technology:** Playwright · TypeScript · JavaScript · Vitest · Postman · Newman · ESLint · Node.js · Express · SQLite · axe-core · GitHub Actions
 
 ## Curated Public Examples
 

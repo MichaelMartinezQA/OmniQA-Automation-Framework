@@ -2,7 +2,9 @@
 
 OmniQA's Test Pyramid transition reflects engineering maturity. Approximately 90% of the relevant core engine behavior had reached sufficient behavioral specification maturity to support deterministic testing closer to its owning layer. This does not mean 90% product completion, production readiness, test coverage, or feature completion.
 
-Deterministic validation now supports focused browser certification for behavior that genuinely depends on a browser. The complete pipeline runs on GitHub-hosted infrastructure with Chromium, Firefox, and WebKit as mandatory gates.
+Today's Test Pyramid could not have been designed on day one because today's engines and behavioral contracts did not yet exist. As OmniQA matured, deterministic behavior became eligible for validation closer to its owning layer, while browser E2E became focused on genuine browser seams.
+
+Vitest API/Integration remains the controlled integration layer. Postman/Newman now adds a distinct real-HTTP contract layer against the running OmniQA service; it does not replace the existing integration tests. The complete pipeline then certifies genuine browser behavior on GitHub-hosted Chromium, Firefox, and WebKit.
 
 This certification describes the private OmniQA system. The conventional examples and sample workflow in this public repository are intentionally separate and are not presented as the certified private pipeline.
 
@@ -13,7 +15,8 @@ flowchart TD
     R --> F[Foundation]
     F --> U[Full Unit]
     U --> A[API / Integration]
-    A --> C[Chromium]
+    A --> H[Postman / Newman HTTP API Contract]
+    H --> C[Chromium]
     C --> FF[Firefox]
     FF --> W[WebKit]
     W --> Q[Certified Quality Evidence]
@@ -24,9 +27,10 @@ flowchart TD
 | Lint | Pass |
 | Typecheck | Pass — 0 errors |
 | Runtime validation | Pass |
-| Foundation | 716 / 716 |
-| Full Unit | 716 / 716 |
+| Foundation | 770 / 770 |
+| Full Unit | 876 / 876 |
 | API / Integration | 11 / 11 |
+| Postman / Newman HTTP API Contract | 46 / 46 requests · 51 / 51 assertions |
 | Chromium | 71 / 71 |
 | Firefox | 71 / 71 |
 | WebKit | 71 / 71 |
