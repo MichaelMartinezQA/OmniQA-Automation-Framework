@@ -8,6 +8,8 @@ OmniQA is an enterprise quality-engineering and certification platform built to 
 
 The current private OmniQA system is certified through a sequential GitHub-hosted pipeline with mandatory Chromium, Firefox, and WebKit gates. This public repository is checked separately by **Public Portfolio Validation**, which validates Markdown, local links, Mermaid syntax, SVG/assets, public-content boundaries, and secret exposure. It does not certify or reproduce OmniQA CI v1.1.
 
+**Current authoritative certification:** `OmniQA Full CI/CD Certification — 3 Browsers + API Contract` · GitHub Actions run `33574481590` · 17m 30s · 100% green
+
 | Certification layer | Certified result |
 | ------------------- | ---------------: |
 | Lint | Pass |

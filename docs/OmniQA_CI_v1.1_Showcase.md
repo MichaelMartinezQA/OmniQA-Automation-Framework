@@ -8,6 +8,13 @@ Vitest API/Integration remains the controlled integration layer. Postman/Newman 
 
 This certification describes the private OmniQA system. The conventional examples and sample workflow in this public repository are intentionally separate and are not presented as the certified private pipeline.
 
+**Authoritative certification run**
+
+- Run name: `OmniQA Full CI/CD Certification — 3 Browsers + API Contract`
+- GitHub Actions run: `33574481590`
+- Total duration: 17m 30s
+- Conclusion: 100% green
+
 ```mermaid
 flowchart TD
     L[Lint] --> T[Typecheck]
