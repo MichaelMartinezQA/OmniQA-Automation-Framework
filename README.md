@@ -4,7 +4,7 @@
 
 OmniQA is an enterprise quality-engineering and certification platform built to produce deterministic, traceable evidence across application layers and real browser seams.
 
-## OmniQA CI v1.1 — Certified on Main
+## OmniQA CI v1.2 — Certified on Main
 
 OmniQA is certified through a sequential GitHub-hosted Quality Engineering pipeline spanning deterministic lower-level validation, real-HTTP API contract testing, and mandatory Chromium, Firefox, and WebKit certification. The portfolio is continuously validated through automated content and integrity checks.
 
@@ -67,7 +67,7 @@ This repository includes practical examples demonstrating Playwright, TypeScript
 
 ## Documentation
 
-- [CI v1.1 three-browser certification showcase](docs/OmniQA_CI_v1.1_Showcase.md)
+- [CI v1.2 full Quality Engineering certification showcase](docs/OmniQA_CI_v1.2_Showcase.md)
 - [OmniQA Quality Engineering methodology](docs/methodology/enterprise-automation-methodology.md)
 
 ## Engineering Portfolio

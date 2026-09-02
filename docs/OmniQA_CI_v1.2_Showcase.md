@@ -1,4 +1,4 @@
-# OmniQA CI v1.1 — Three-Browser Certification
+# OmniQA CI v1.2 — Full Quality Engineering Certification
 
 OmniQA's Test Pyramid transition reflects engineering maturity. The approximately 90% figure represents behavioral specification maturity across the relevant core engines—the point at which those behaviors became sufficiently defined for deterministic validation closer to their owning layers.
 
