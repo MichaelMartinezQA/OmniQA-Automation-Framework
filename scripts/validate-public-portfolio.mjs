@@ -77,7 +77,7 @@ const forbiddenPaths = [
 ];
 for (const file of trackedFiles) {
   if (forbiddenPaths.some((pattern) => pattern.test(normalize(file)))) {
-    fail("PUBLIC CONTENT BOUNDARY", `${file}: private/proprietary path is not permitted`);
+    fail("REPOSITORY SCOPE", `${file}: content falls outside the approved repository scope`);
   }
 }
 
@@ -100,7 +100,7 @@ for (const file of trackedFiles) {
   }
 }
 
-const checks = ["MARKDOWN", "LINKS", "MERMAID", "ASSETS", "PUBLIC CONTENT BOUNDARY", "SECRET SCAN"];
+const checks = ["MARKDOWN", "LINKS", "MERMAID", "ASSETS", "REPOSITORY SCOPE", "SECRET SCAN"];
 try {
   execFileSync(process.execPath, ["scripts/validate-certification-evidence.mjs"], { stdio: "inherit" });
 } catch {

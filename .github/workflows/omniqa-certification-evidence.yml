@@ -34,7 +34,7 @@ jobs:
         run: node scripts/validate-certification-evidence.mjs
 
   validate-public-portfolio:
-    name: Validate public portfolio integrity
+    name: Validate Quality Engineering portfolio integrity
     needs: verify-certification-evidence
     runs-on: ubuntu-latest
     timeout-minutes: 5
