@@ -13,8 +13,9 @@ The certification metrics represent OmniQA’s complete governed Quality Enginee
 - Run name: `OmniQA Full CI/CD — Postman API Contract + 3-Browser Certification`
 - Commit SHA: `696f87d71be960500320f2b2009a37152ed4c2bb`
 - GitHub Actions run: `33589158901`
+- Certification date: September 2, 2026
 - Total duration: 14m 33s
-- Conclusion: 100% green
+- Conclusion: 100% GREEN
 
 ```mermaid
 flowchart TD
@@ -47,3 +48,5 @@ flowchart TD
 | Arbitrary waits | 0 |
 
 This milestone demonstrates a deterministic, sequential quality gate with complete three-browser certification and no retry-based or time-based masking.
+
+The public GitHub Actions workflow verifies the integrity and consistency of this published Quality Engineering certification evidence.

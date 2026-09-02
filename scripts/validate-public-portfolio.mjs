@@ -101,6 +101,12 @@ for (const file of trackedFiles) {
 }
 
 const checks = ["MARKDOWN", "LINKS", "MERMAID", "ASSETS", "PUBLIC CONTENT BOUNDARY", "SECRET SCAN"];
+try {
+  execFileSync(process.execPath, ["scripts/validate-certification-evidence.mjs"], { stdio: "inherit" });
+} catch {
+  fail("CERTIFICATION EVIDENCE", "published certification evidence is inconsistent");
+}
+checks.push("CERTIFICATION EVIDENCE");
 for (const check of checks) {
   const messages = failures.get(check) ?? [];
   console.log(`${check}: ${messages.length === 0 ? "PASS" : "FAIL"}`);

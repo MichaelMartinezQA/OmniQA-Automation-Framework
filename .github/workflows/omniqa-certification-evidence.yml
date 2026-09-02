@@ -1,0 +1,70 @@
+name: OmniQA Full CI/CD — Postman API Contract + 3-Browser Certification
+run-name: OmniQA Full CI/CD — Postman API Contract + 3-Browser Certification
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/omniqa-certification-evidence.yml"
+      - "certification/omniqa-ci-v1.2.json"
+      - "scripts/validate-certification-evidence.mjs"
+      - "scripts/validate-public-portfolio.mjs"
+      - "README.md"
+      - "docs/OmniQA_CI_v1.2_Showcase.md"
+
+permissions:
+  contents: read
+
+jobs:
+  verify-certification-evidence:
+    name: Verify authoritative certification evidence
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check out certification portfolio
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Verify certification record and published results
+        run: node scripts/validate-certification-evidence.mjs
+
+  validate-public-portfolio:
+    name: Validate public portfolio integrity
+    needs: verify-certification-evidence
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check out certification portfolio
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Validate portfolio content and integrity
+        run: node scripts/validate-public-portfolio.mjs
+
+  publish-certification-summary:
+    name: Publish Quality Engineering certification summary
+    needs:
+      - verify-certification-evidence
+      - validate-public-portfolio
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check out certification portfolio
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Publish certification evidence summary
+        run: node scripts/validate-certification-evidence.mjs --summary >> "$GITHUB_STEP_SUMMARY"
