@@ -11,8 +11,9 @@ The certification metrics represent OmniQA’s complete governed Quality Enginee
 **Authoritative certification run**
 
 - Run name: `OmniQA Full CI/CD — Postman API Contract + 3-Browser Certification`
-- GitHub Actions run: `33586082694`
-- Total duration: 16m 54s
+- Commit SHA: `696f87d71be960500320f2b2009a37152ed4c2bb`
+- GitHub Actions run: `33589158901`
+- Total duration: 14m 33s
 - Conclusion: 100% green
 
 ```mermaid
@@ -34,14 +35,14 @@ flowchart TD
 | Lint | Pass |
 | Typecheck | Pass — 0 errors |
 | Runtime validation | Pass |
-| Foundation | 770 / 770 |
-| Full Unit | 876 / 876 |
+| Foundation | 782 / 782 |
+| Full Unit | 888 / 888 |
 | API / Integration | 11 / 11 |
 | Postman / Newman HTTP API Contract | 46 / 46 requests · 51 / 51 assertions |
-| Chromium | 71 / 71 |
-| Firefox | 71 / 71 |
-| WebKit | 71 / 71 |
-| Browser total | 213 / 213 |
+| Chromium | 72 / 72 |
+| Firefox | 72 / 72 |
+| WebKit | 72 / 72 |
+| Browser total | 216 / 216 |
 | Retries | 0 |
 | Arbitrary waits | 0 |
 
