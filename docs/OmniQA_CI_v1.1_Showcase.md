@@ -1,12 +1,12 @@
 # OmniQA CI v1.1 — Three-Browser Certification
 
-OmniQA's Test Pyramid transition reflects engineering maturity. Approximately 90% of the relevant core engine behavior had reached sufficient behavioral specification maturity to support deterministic testing closer to its owning layer. This does not mean 90% product completion, production readiness, test coverage, or feature completion.
+OmniQA's Test Pyramid transition reflects engineering maturity. The approximately 90% figure represents behavioral specification maturity across the relevant core engines—the point at which those behaviors became sufficiently defined for deterministic validation closer to their owning layers.
 
-Today's Test Pyramid could not have been designed on day one because today's engines and behavioral contracts did not yet exist. As OmniQA matured, deterministic behavior became eligible for validation closer to its owning layer, while browser E2E became focused on genuine browser seams.
+OmniQA’s Test Pyramid reflects the platform’s engineering maturity. As engines and behavioral contracts became more sophisticated, the testing architecture evolved alongside them—expanding deterministic validation at the appropriate layers while sharpening browser certification around genuine browser behavior.
 
-Vitest API/Integration remains the controlled integration layer. Postman/Newman now adds a distinct real-HTTP contract layer against the running OmniQA service; it does not replace the existing integration tests. The complete pipeline then certifies genuine browser behavior on GitHub-hosted Chromium, Firefox, and WebKit.
+Vitest API/Integration and Postman/Newman provide complementary validation layers: controlled integration evidence followed by real-HTTP contract validation against the running OmniQA service. The complete pipeline then certifies genuine browser behavior on GitHub-hosted Chromium, Firefox, and WebKit.
 
-This certification describes the private OmniQA system. The conventional examples and sample workflow in this public repository are intentionally separate and are not presented as the certified private pipeline.
+The certification metrics represent OmniQA’s complete governed Quality Engineering pipeline. The portfolio examples demonstrate selected techniques and architectural patterns that support that broader engineering approach.
 
 **Authoritative certification run**
 
@@ -45,4 +45,4 @@ flowchart TD
 | Retries | 0 |
 | Arbitrary waits | 0 |
 
-This milestone demonstrates a deterministic, sequential quality gate with complete three-browser certification and no retry-based or time-based masking. Private application code, specifications, tests, audits, and implementation details remain outside this public portfolio.
+This milestone demonstrates a deterministic, sequential quality gate with complete three-browser certification and no retry-based or time-based masking.

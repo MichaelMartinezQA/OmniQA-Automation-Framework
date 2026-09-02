@@ -1,6 +1,6 @@
 # OmniQA Quality-Engineering Methodology
 
-This public-safe overview describes OmniQA's engineering approach without reproducing private rules, contracts, tests, specifications, or implementation details.
+This overview presents OmniQA’s Quality Engineering methodology, including traceability, deterministic validation, synchronization strategy, API contract testing, and cross-browser certification.
 
 ## Traceability
 
@@ -18,6 +18,6 @@ Chromium, Firefox, and WebKit certify behavior that genuinely depends on a brows
 
 Automation synchronizes on authoritative application readiness rather than arbitrary elapsed time. Failures are classified at the owning layer before correction, and retries are not used to mask instability.
 
-## Public Boundary
+## Engineering Methodology
 
-This document intentionally excludes private application source, Business Rules, engine contracts, User Stories and Journeys, specifications, tests, selectors, algorithms, audits, and implementation mechanics.
+OmniQA applies transferable Quality Engineering principles across behavioral traceability, deterministic state validation, API contracts, synchronization, and browser certification. These principles provide a structured foundation for reliable test evidence as the application evolves.

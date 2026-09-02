@@ -6,7 +6,7 @@ OmniQA is an enterprise quality-engineering and certification platform built to 
 
 ## OmniQA CI v1.1 — Certified on Main
 
-The current private OmniQA system is certified through a sequential GitHub-hosted pipeline with mandatory Chromium, Firefox, and WebKit gates. This public repository is checked separately by **Public Portfolio Validation**, which validates Markdown, local links, Mermaid syntax, SVG/assets, public-content boundaries, and secret exposure. It does not certify or reproduce OmniQA CI v1.1.
+OmniQA is certified through a sequential GitHub-hosted Quality Engineering pipeline spanning deterministic lower-level validation, real-HTTP API contract testing, and mandatory Chromium, Firefox, and WebKit certification. The portfolio is continuously validated through automated content and integrity checks.
 
 **Current authoritative certification:** `OmniQA Full CI/CD Certification — 3 Browsers + API Contract` · GitHub Actions run `33574481590` · 17m 30s · 100% green
 
@@ -30,9 +30,9 @@ The current private OmniQA system is certified through a sequential GitHub-hoste
 
 OmniQA's Test Pyramid transition reflects engineering maturity. Approximately 90% of the relevant core engine behavior has reached sufficient behavioral specification maturity to support deterministic testing closer to its owning layer.
 
-This figure describes behavioral specification maturity for the relevant core engines. It does **not** mean 90% product completion, production readiness, test coverage, or feature completion.
+The approximately 90% figure represents behavioral specification maturity across the relevant core engines—the point at which those behaviors became sufficiently defined for deterministic validation closer to their owning layers.
 
-Today's Test Pyramid could not have been designed on day one because today's engines and behavioral contracts did not yet exist. As OmniQA matured, deterministic behavior became eligible for validation closer to its owning layer, while browser E2E became focused on genuine browser seams. The newest stage adds real-HTTP contract validation without replacing the existing API and integration layer.
+OmniQA’s Test Pyramid evolved alongside the application. As engines and behavioral contracts matured, deterministic validation moved closer to the layers that own those behaviors. Real-HTTP contract testing now complements controlled API/Integration validation, while browser E2E remains focused on genuine browser seams.
 
 ```mermaid
 flowchart TD
@@ -57,21 +57,19 @@ Deterministic layers own repeatable state, calculation, transition, and boundary
 - Accessibility validation with axe-core
 - Strict TypeScript and ESLint gates
 - Runtime validation and GitHub Actions governance
-- Public/private source and publication safeguards
+- Governed engineering, certification, and portfolio practices
 
 **Technology:** Playwright · TypeScript · JavaScript · Vitest · Postman · Newman · ESLint · Node.js · Express · SQLite · axe-core · GitHub Actions
 
-## Curated Public Examples
+## Quality Engineering Examples
 
-This repository retains selected conventional examples that demonstrate Playwright, TypeScript, API validation, accessibility, negative testing, and quality-engineering structure. They are portfolio examples—not the private OmniQA product, its proprietary engines, or its authoritative certification suites.
+This repository includes practical examples demonstrating Playwright, TypeScript, API validation, accessibility, negative testing, and Quality Engineering structure. Together they illustrate the testing techniques and architectural principles used throughout OmniQA’s engineering evolution.
 
 ## Documentation
 
 - [CI v1.1 three-browser certification showcase](docs/OmniQA_CI_v1.1_Showcase.md)
-- [Public-safe quality-engineering methodology](docs/methodology/enterprise-automation-methodology.md)
+- [OmniQA Quality Engineering methodology](docs/methodology/enterprise-automation-methodology.md)
 
-## Private Intellectual-Property Boundary
+## Engineering Portfolio
 
-The public portfolio intentionally excludes private application source, Business Rules, engine contracts, User Stories and Journeys, specifications, tests, audits, algorithms, internal implementation details, repository history, and operational credentials.
-
-Public material describes architecture and achievements only at a high level. The certified private system remains separate from these curated examples.
+This portfolio presents OmniQA’s Quality Engineering architecture, methodology, certification evidence, and selected implementation examples. It is designed to demonstrate the engineering decisions, testing strategy, and deterministic principles behind the platform’s evolution.
