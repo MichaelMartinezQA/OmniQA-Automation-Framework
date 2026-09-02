@@ -10,9 +10,9 @@ The certification metrics represent OmniQA’s complete governed Quality Enginee
 
 **Authoritative certification run**
 
-- Run name: `OmniQA Full CI/CD Certification — 3 Browsers + API Contract`
-- GitHub Actions run: `33574481590`
-- Total duration: 17m 30s
+- Run name: `OmniQA Full CI/CD — Postman API Contract + 3-Browser Certification`
+- GitHub Actions run: `33586082694`
+- Total duration: 16m 54s
 - Conclusion: 100% green
 
 ```mermaid

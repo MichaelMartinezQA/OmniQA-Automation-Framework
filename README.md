@@ -8,7 +8,7 @@ OmniQA is an enterprise quality-engineering and certification platform built to 
 
 OmniQA is certified through a sequential GitHub-hosted Quality Engineering pipeline spanning deterministic lower-level validation, real-HTTP API contract testing, and mandatory Chromium, Firefox, and WebKit certification. The portfolio is continuously validated through automated content and integrity checks.
 
-**Current authoritative certification:** `OmniQA Full CI/CD Certification — 3 Browsers + API Contract` · GitHub Actions run `33574481590` · 17m 30s · 100% green
+**Current authoritative certification:** `OmniQA Full CI/CD — Postman API Contract + 3-Browser Certification` · GitHub Actions run `33586082694` · 16m 54s · 100% green
 
 | Certification layer | Certified result |
 | ------------------- | ---------------: |
